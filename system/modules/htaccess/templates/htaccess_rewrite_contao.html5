@@ -1,0 +1,87 @@
+<IfModule mod_rewrite.c>
+
+	##
+	# Activate the module
+	##
+	RewriteEngine On
+
+	##
+	# Set the RewriteBase
+	##
+	RewriteBase <?php echo $this->base; ?>
+
+	##
+	# Contao usually does not pass absolute URLs via GET, therefore the
+	# following rules block all requests that try to pass a URL or the /etc/
+	# directory as parameter (malicious requests).
+	##
+	RewriteCond %{REQUEST_URI} (ftp|https?):|/etc/ [NC,OR]
+	RewriteCond %{QUERY_STRING} (ftp|https?):|/etc/ [NC]
+	RewriteRule .* - [F,L]
+
+	##
+	# Uncomment the following lines and replace "domain.com" with your domain
+	# name to redirect requests without "www" to the correct domain.
+	##
+	<?php
+	foreach ($this->prependWWW as $strDomain):
+	?>RewriteCond %{HTTP_HOST} ^<?php echo preg_quote($strDomain); ?> [NC]
+	RewriteRule (.*) http://www.<?php echo $strDomain; ?>/$1 [R=301,L]
+	
+	<?php
+	endforeach;
+	foreach ($this->removeWWW as $strDomain):
+	?>RewriteCond %{HTTP_HOST} ^www\.<?php echo preg_quote($strDomain); ?> [NC]
+	RewriteRule (.*) http://<?php echo $strDomain; ?>/$1 [R=301,L]
+
+	<?php
+	endforeach;
+	?>
+
+	##
+	# If you cannot use mod_deflate, uncomment the following lines to load a
+	# compressed .gz version of the bigger Contao JavaScript and CSS files.
+	##
+	<?php
+	if ($this->gzip):
+	?>AddEncoding gzip .gz
+	<FilesMatch "\.js\.gz$">
+		AddType "text/javascript" .gz
+	</FilesMatch>
+	<FilesMatch "\.css\.gz$">
+		AddType "text/css" .gz
+	</FilesMatch>
+	RewriteCond %{HTTP:Accept-encoding} gzip
+	RewriteCond %{REQUEST_FILENAME} \.(js|css)$
+	RewriteCond %{REQUEST_FILENAME}.gz -f
+	RewriteRule ^(.*)$ $1.gz [QSA,L]
+	<?php
+	endif;
+	?>
+
+	##
+	# Do not rewrite requests for static files or folders such as style sheets,
+	# images, movies or text documents.
+	##
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+
+	##
+	# By default, Contao adds ".html" to the generated URLs to simulate static
+	# HTML documents. If you change the URL suffix in the back end settings, make
+	# sure to change it here accordingly!
+	#
+	#   RewriteRule .*\.html$ index.php [L]   # URL suffix .html
+	#   RewriteRule .* index.php [L]          # No URL suffix
+	#   RewriteRule .*\.txt$ index.php [L]    # URL suffix .txt
+	#
+	# If you are using mod_cache, it is recommended to use the RewriteRule below,
+	# which adds the query string to the internal URL:
+	#
+	#   RewriteRule (.*\.html)$ index.php/$1 [L]
+	#
+	# Note that not all environments support mod_rewrite and mod_cache.
+	##
+	RewriteRule .*\.html$ index.php [L]
+
+</IfModule>
