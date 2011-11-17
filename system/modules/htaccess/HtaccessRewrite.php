@@ -93,12 +93,14 @@ class HtaccessRewrite extends System implements HtaccessModule
 			}
 		}
 
-		$objTemplate = new BackendTemplate($GLOBALS['TL_CONFIG']['htaccess_rewrite_template']);
+		$objTemplate = new BackendTemplate('htaccess_rewrite_' . $GLOBALS['TL_CONFIG']['htaccess_template']);
 		$objTemplate->submodules = $strSubmoduleCode;
 		$objTemplate->base       = $GLOBALS['TL_CONFIG']['websitePath'];
+		$objTemplate->rules      = $GLOBALS['TL_CONFIG']['htaccess_rewrite_rules'];
 		$objTemplate->prependWWW = $arrPrependWWW;
 		$objTemplate->removeWWW  = $arrRemoveWWW;
 		$objTemplate->gzip       = $GLOBALS['TL_CONFIG']['htaccess_rewrite_gzip'];
+		$objTemplate->suffix     = $GLOBALS['TL_CONFIG']['htaccess_rewrite_suffix'];
 		return $objTemplate->parse();
 	}
 }

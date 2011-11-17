@@ -62,22 +62,34 @@ class Htaccess extends System
 				// walk over sub modules if there any
 				if (is_array($GLOBALS['TL_HTACCESS_SUBMODULES'][$strModule]))
 				{
-					foreach ($GLOBALS['TL_HTACCESS_SUBMODULES'] as $strSubmodule=>$strSubclass)
+					foreach ($GLOBALS['TL_HTACCESS_SUBMODULES'][$strModule] as $strSubmodule=>$strSubclass)
 					{
-						/** @var HtaccessSubmodule */
-						$objSubmodule = new $strSubclass();
+						// only generate if is it activated
+						if ($GLOBALS['TL_CONFIG']['htaccess_module_' . $strSubmodule])
+						{
+							/** @var HtaccessSubmodule */
+							$objSubmodule = new $strSubclass();
 
-						// generate the sub module
-						$strSubmoduleCode .= $objSubmodule->generateSubmodule();
+							$strSubmoduleCode .= "\n# --- submodule $strSubmodule start ---\n";
+
+							// generate the sub module
+							$strSubmoduleCode .= $objSubmodule->generateSubmodule();
+
+							$strSubmoduleCode .= "\n# --- submodule $strSubmodule end ---\n";
+						}
 					}
 				}
 
+				$strModules .= "\n# --- module $strModule start ---\n";
+
 				// generate the module
 				$strModules .= $objModule->generateModule($strSubmoduleCode);
+
+				$strModules .= "\n# --- module $strModule end ---\n";
 			}
 		}
 
-		$objTemplate = new BackendTemplate($GLOBALS['TL_CONFIG']['htaccess_template']);
+		$objTemplate = new BackendTemplate('htaccess_base_' . $GLOBALS['TL_CONFIG']['htaccess_template']);
 		$objTemplate->modules = $strModules;
 		$strHtaccess = $objTemplate->parse();
 		
@@ -86,5 +98,13 @@ class Htaccess extends System
 		$objFile->close();
 
 		$this->log('Create new .htaccess file.', 'Htaccess::update()', TL_INFO);
+		if (TL_MODE == 'BE')
+		{
+			if (!isset($GLOBALS['TL_LANG']['tl_htaccess']['updateHtaccess']))
+			{
+				$this->loadLanguageFile('tl_htaccess');
+			}
+			$_SESSION['TL_INFO'][] = $GLOBALS['TL_LANG']['tl_htaccess']['updateHtaccess'];
+		}
 	}
 }

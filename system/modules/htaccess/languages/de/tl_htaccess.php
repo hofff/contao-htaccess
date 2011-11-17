@@ -44,13 +44,14 @@ $GLOBALS['TL_LANG']['tl_htaccess']['edit']                     = '.htaccess Konf
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_settings_legend'] = 'Voreinstellungen';
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_load_settings'] = array('Voreinstellungen laden', 'Lädt ein Set ein Voreinstellungen, dieser Vorgang kann nicht rückgängig gemacht werden!');
 $GLOBALS['TL_LANG']['tl_htaccess']['confirmLoadSettings']      = 'Sind Sie sicher, dass Sie die Voreinstellung laden wollen?\nDieser Vorgang kann nicht rückgängig gemacht werden!';
-$GLOBALS['TL_LANG']['tl_htaccess']['loadSettings']             = 'Voreinstellungsset <strong>%s</strong> wurde geladen!';
+$GLOBALS['TL_LANG']['tl_htaccess']['loadSettings']             = 'Voreinstellungsset <strong>%s</strong> wurde geladen!<br/>Überprüfen und Speichern Sie die Einstellungen um die .htaccess Datei zu aktualisieren.';
 
 /**
  * general
  */
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_base_legend'] = 'Grundeinstellungen';
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_template']    = array('Template', 'Bitte wählen Sie das Template für die .htaccess Datei aus.');
+$GLOBALS['TL_LANG']['tl_htaccess']['updateHtaccess']       = 'Die .htaccess Datei wurde neu erstellt.';
 
 /**
  * etag module
@@ -96,7 +97,7 @@ $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_default']  = array('Standar
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires']          = array('Ablaufzeiten nach Typ', 'Definieren Sie hier die Zeiten, wann eine Datei abgelaufen ist und aktualisiert werden muss.');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_mimetype'] = array('MIME-Type');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_mode']     = array('Mode');
-$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time']     = array('Zeit', '%d Jahr(e)', '%d Monat(e)', '%d Tag(e)', '%s Stunde(n)', '%s Minute(n)', 'sofort');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time']     = array('Zeit', '%d Jahr(e)', '%d Monat(e)', '%d Woche(n)', '%d Tag(e)', '%s Stunde(n)', '%s Minute(n)', 'sofort');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_template'] = array('Expires Modul Template', 'Bitte wählen Sie das Template für dieses Modul aus.');
 
 /**
@@ -112,7 +113,19 @@ $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_custom_template'] = array('Custom M
  */
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_legend']      = 'Rewrite Modul';
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_module_rewrite']      = array('Rewrite Modul aktivieren', 'Das Rewrite Modul erlaubt das Umschreiben der URL virtuell am Server oder durch Redirect am Client.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_rules']       = array('Eigene Rewrite Regeln', 'Definieren Sie hier Ihre eigenen Rewrite Regeln.');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_prepend_www'] = array('www. hinzufügen', 'Rewrite Regel für Domains mit www. erzeugen, so dass beim Aufruf der Domain ohne www. zur Domain mit www. umgeleitet wird.');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_remove_www']  = array('www. entfernen', 'Rewrite Regel für Domains ohne www. erzeugen, so dass beim Aufruf der Domain mit www. zur Domain ohne www. umgeleitet wird.');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_gzip']        = array('.gz Rewrite', 'Rewrite Regel für vorkomprimierte .gz Dateien erzeugen. Leitet transparent Aufrufe von .js und .css Dateien auf vorkomprimierte .js.gz bzw. .css.gz Dateien.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_suffix']      = array('Contao Rewrite Suffix', 'Definieren Sie hier den Dateisuffix (z.B. html) für die der Requests auf Contao umgeleitet werden soll. Kann auch leer gelassen werden, um alle dynamischen Requests umzuleiten.');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_template']    = array('Rewrite Modul Template', 'Bitte wählen Sie das Template für dieses Modul aus.');
+
+/**
+ * html5boilderplate settings
+ */
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_legend']      = 'html5boilderplate Einstellungen';
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_module_h5bp']                = array('html5boilerplate Modul aktivieren', 'Aktiviert einige zusätzliche Funktionen aus der html5boilerplate.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_ie_x_ua_compatible']    = array('Neueste IE Engine erzwingen', 'Erzwingt den IE die neueste Engine zu verwenden und den Kompatibilitätsmodus zu umgehen.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_cross_domain_ajax']     = array('Cross-Domain AJAX Requests', 'Cross-Domain AJAX Requests erlauben.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_concatenation_include'] = array('Includes in CSS/JS Dateien erlauben', 'Erlaubt <a href="https://github.com/h5bp/html5-boilerplate/blob/master/.htaccess#L111" target="_blank">Server-Side-Includes</a> in *.combined.css/js Dateien. In der *.combined.* Datei müssen Includes eingefügt werden, um so eine dynamisch vereinheitlichte Datei zu erhalten.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_ie_flicker_fix']        = array('IE Flimmern bei CSS rollover verhindern', '(nur IE) Verhindert das Flimmern das beim nachladen von Bildern durch CSS rollover entstehen kann.');

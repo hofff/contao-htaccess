@@ -60,7 +60,7 @@ class HtaccessDeflate implements HtaccessModule
 			}
 		}
 
-		$objTemplate = new BackendTemplate($GLOBALS['TL_CONFIG']['htaccess_deflate_template']);
+		$objTemplate = new BackendTemplate('htaccess_deflate_' . $GLOBALS['TL_CONFIG']['htaccess_template']);
 		$objTemplate->submodules = $strSubmoduleCode;
 		$objTemplate->extensions = $arrExtensions;
 		return $objTemplate->parse();

@@ -53,8 +53,139 @@ $GLOBALS['TL_HTACCESS']['headers'] = 'HtaccessHeaders';
 $GLOBALS['TL_HTACCESS']['expires'] = 'HtaccessExpires';
 $GLOBALS['TL_HTACCESS']['custom']  = 'HtaccessCustom';
 $GLOBALS['TL_HTACCESS']['rewrite'] = 'HtaccessRewrite';
+$GLOBALS['TL_HTACCESS']['h5bp']    = 'HtaccessHtml5Boilerplate';
 
-$GLOBALS['TL_HTACCESS_SUBMODULES']['headers'] = 'HtaccessEtag';
+$GLOBALS['TL_HTACCESS_SUBMODULES']['headers']['etag'] = 'HtaccessEtag';
+$GLOBALS['TL_HTACCESS_SUBMODULES']['headers']['h5bp'] = 'HtaccessHtml5Boilerplate';
+
+
+/**
+ * Functions
+ */
+if (!function_exists('recalc_time_to_alternative'))
+{
+	/**
+	 * Recalculate seconds to alternate interval syntax.
+	 *
+	 * @see http://httpd.apache.org/docs/2.0/mod/mod_expires.html#AltSyn
+	 * @param $time int
+	 * @return string
+	 */
+	function recalc_time_to_alternative($mode, $time)
+	{
+		$scope = 'seconds';
+		$seconds = $time;
+		$minutes = 0;
+		$hours   = 0;
+		$days    = 0;
+		$weeks   = 0;
+		$months  = 0;
+		$years   = 0;
+		if ($seconds >= 60)
+		{
+			$minutes  = $seconds / 60;
+			$seconds %= 60;
+
+			if ($minutes >= 60)
+			{
+				$hours    = $minutes / 60;
+				$minutes %= 60;
+
+				if ($hours >= 24)
+				{
+					$days   = $hours / 24;
+					$hours %= 24;
+
+					if ($days >= 7.5)
+					{
+						$weeks  = $days / 7.5;
+						$days  %= 7.5;
+						$hours -= ($weeks%2) * 12;
+						$days  -= floor($weeks/2);
+
+						if ($weeks >= 4)
+						{
+							$months  = $weeks / 4;
+							$weeks  %= 4;
+
+							if ($months >= 12)
+							{
+								$years   = $months / 12;
+								$months %= 12;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		$buffer = '';
+		if ($years > 1)
+		{
+			$buffer .= sprintf(' %d years', $years);
+		}
+		else if ($years > 0)
+		{
+			$buffer .= sprintf(' %d year', $years);
+		}
+
+		if ($months > 1)
+		{
+			$buffer .= sprintf(' %d months', $months);
+		}
+		else if ($months > 0)
+		{
+			$buffer .= sprintf(' %d month', $months);
+		}
+
+		if ($weeks > 1)
+		{
+			$buffer .= sprintf(' %d weeks', $weeks);
+		}
+		else if ($weeks > 0)
+		{
+			$buffer .= sprintf(' %d week', $weeks);
+		}
+
+		if ($days > 1)
+		{
+			$buffer .= sprintf(' %d days', $days);
+		}
+		else if ($days > 0)
+		{
+			$buffer .= sprintf(' %d day', $days);
+		}
+
+		if ($hours > 1)
+		{
+			$buffer .= sprintf(' %d hours', $hours);
+		}
+		else if ($hours > 0)
+		{
+			$buffer .= sprintf(' %d hour', $hours);
+		}
+
+		if ($minutes > 1)
+		{
+			$buffer .= sprintf(' %d minutes', $minutes);
+		}
+		else if ($minutes > 0)
+		{
+			$buffer .= sprintf(' %d minute', $minutes);
+		}
+
+		if ($seconds > 1 || empty($buffer))
+		{
+			$buffer .= sprintf(' %d seconds', $seconds);
+		}
+		if ($seconds > 0)
+		{
+			$buffer .= sprintf(' %d second', $seconds);
+		}
+
+		return sprintf('"%s plus %s"', $mode == 'A' ? 'access' : 'modification', trim($buffer));
+	}
+}
 
 
 /**
@@ -62,21 +193,18 @@ $GLOBALS['TL_HTACCESS_SUBMODULES']['headers'] = 'HtaccessEtag';
  */
 $GLOBALS['TL_HTACCESS_DEFAULTS']['contao'] = array
 (
-	'htaccess_template' => 'htaccess_base_contao',
+	'htaccess_template'            => 'contao',
 	/* etag config */
-	'htaccess_module_etag'           => true,
-	'htaccess_etag_template'         => 'htaccess_etag_contao',
-	'htaccess_etag_headers_template' => 'htaccess_etag_headers_contao',
+	'htaccess_module_etag'         => true,
 	/* mime config */
-	'htaccess_module_mime'   => true,
-	'htaccess_mime_types'    => array
+	'htaccess_module_mime'         => true,
+	'htaccess_mime_types'          => array
 	(
 		array('extension' => 'htc', 'mimetype' => 'text/x-component')
 	),
-	'htaccess_mime_template' => 'htaccess_mime_contao',
 	/* deflate config */
-	'htaccess_module_deflate'   => true,
-	'htaccess_deflate_files'    => array
+	'htaccess_module_deflate'      => true,
+	'htaccess_deflate_files'       => array
 	(
 		array('extension' => 'css'),
 		array('extension' => 'js'),
@@ -84,46 +212,53 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['contao'] = array
 		array('extension' => 'html?'),
 		array('extension' => 'php')
 	),
-	'htaccess_deflate_template' => 'htaccess_deflate_contao',
 	/* headers config */
-	'htaccess_module_headers'   => true,
-	'htaccess_headers_template' => 'htaccess_headers_contao',
+	'htaccess_module_headers'      => true,
 	/* expires config */
-	'htaccess_module_expires'   => true,
-	'htaccess_expires_default'  => 2592000,
-	'htaccess_expires'          => array
+	'htaccess_module_expires'      => true,
+	'htaccess_expires_default'     => (60*60*24*30),
+	'htaccess_expires'             => array
 	(
-		array('mimetype' => 'image/png',                'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'image/gif',                'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'image/jpg',                'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'image/jpeg',               'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'text/javascript',          'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'application/x-javascript', 'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'application/javascript',   'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'text/css',                 'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'image/x-icon',             'mode' => 'A', 'time' => 2592000),
+		array('mimetype' => 'image/png',                'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'image/gif',                'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'image/jpg',                'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'image/jpeg',               'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'text/javascript',          'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'application/x-javascript', 'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'application/javascript',   'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'text/css',                 'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'image/x-icon',             'mode' => 'A', 'time' => (60*60*24*30)),
 	),
-	'htaccess_expires_template' => 'htaccess_expires_contao',
 	/* custom config */
-	'htaccess_module_custom' => false,
+	'htaccess_module_custom'       => false,
+	'htaccess_custom'              => '',
 	/* rewrite config */
-	'htaccess_module_rewrite' => true,
-	'htaccess_rewrite_template' => 'htaccess_rewrite_contao'
+	'htaccess_module_rewrite'      => true,
+	'htaccess_rewrite_rules'       => '',
+	'htaccess_rewrite_prepend_www' => false,
+	'htaccess_rewrite_remove_www'  => false,
+	'htaccess_rewrite_gzip'        => false,
+	'htaccess_rewrite_suffix'      => 'html',
+	/* h5bp settings */
+	'htaccess_module_h5bp'                => false,
+	'htaccess_h5bp_ie_x_ua_compatible'    => false,
+	'htaccess_h5bp_cross_domain_ajax'     => false,
+	'htaccess_h5bp_concatenation_include' => false,
+	'htaccess_h5bp_ie_flicker_fix'        => false
 );
+
 
 /**
  * HTML5 Boilerplate default configuration
  */
 $GLOBALS['TL_HTACCESS_DEFAULTS']['html5boilerplate'] = array
 (
-	'htaccess_template' => 'htaccess_base_h5bp',
+	'htaccess_template'            => 'h5bp',
 	/* etag config */
-	'htaccess_module_etag' => true,
-	'htaccess_etag_template'         => 'htaccess_etag_h5bp',
-	'htaccess_etag_headers_template' => 'htaccess_etag_headers_h5bp',
+	'htaccess_module_etag'         => true,
 	/* mime config */
-	'htaccess_module_mime' => true,
-	'htaccess_mime_types' => array
+	'htaccess_module_mime'         => true,
+	'htaccess_mime_types'          => array
 	(
 		array('extension' => 'htc',               'mimetype' => 'text/x-component'),
 		array('extension' => 'js',                'mimetype' => 'application/javascript'),
@@ -148,10 +283,9 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['html5boilerplate'] = array
 		array('extension' => 'safariextz',        'mimetype' => 'application/octet-stream'),
 		array('extension' => 'vcf',               'mimetype' => 'text/x-vcard')
 	),
-	'htaccess_mime_template' => 'htaccess_mime_contao',
 	/* deflate config */
-	'htaccess_module_deflate'   => true,
-	'htaccess_deflate_files'    => array
+	'htaccess_module_deflate'      => true,
+	'htaccess_deflate_files'       => array
 	(
 		array('extension' => 'text/html'),
 		array('extension' => 'text/css'),
@@ -170,45 +304,52 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['html5boilerplate'] = array
 		array('extension' => 'application/x-font-ttf'),
 		array('extension' => 'font/opentype')
 	),
-	'htaccess_deflate_template' => 'htaccess_deflate_h5bp',
 	/* headers config */
-	'htaccess_module_headers'   => true,
-	'htaccess_headers_template' => 'htaccess_headers_h5bp',
+	'htaccess_module_headers'      => true,
 	/* expires config */
-	'htaccess_module_expires'   => true,
-	'htaccess_expires_default'  => 2592000,
-	'htaccess_expires'          => array
+	'htaccess_module_expires'      => true,
+	'htaccess_expires_default'     => (60*60*24*30),
+	'htaccess_expires'             => array
 	(
-		array('mimetype' => 'text/cache-manifest',                'mode' => 'A', 'time' => 0),
-		array('mimetype' => 'text/html',                'mode' => 'A', 'time' => 0),
-		array('mimetype' => 'text/xml',                'mode' => 'A', 'time' => 0),
-		array('mimetype' => 'application/xml',                'mode' => 'A', 'time' => 0),
-		array('mimetype' => 'application/json',                'mode' => 'A', 'time' => 0),
-		array('mimetype' => 'application/rss+xml',                'mode' => 'A', 'time' => 3600),
-		array('mimetype' => 'application/atom+xml',                'mode' => 'A', 'time' => 3600),
-		array('mimetype' => 'image/x-icon',                'mode' => 'A', 'time' => 604800),
-		array('mimetype' => 'image/gif',                'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'image/png',                'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'image/jpg',                'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'image/jpeg',               'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'video/ogg',                'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'audio/ogg',                'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'video/mp4',                'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'video/webm',               'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'text/x-component',               'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'application/x-font-ttf',                'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'font/opentype',                'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'application/x-font-woff',                'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'image/svg+xml',               'mode' => 'A', 'time' => 2592000),
-		array('mimetype' => 'application/vnd.ms-fontobject',               'mode' => 'A', 'time' => 2592000),
-
-		array('mimetype' => 'text/css',                 'mode' => 'A', 'time' => 31104000),
-		array('mimetype' => 'application/javascript',             'mode' => 'A', 'time' => 31104000),
+		array('mimetype' => 'text/cache-manifest',           'mode' => 'A', 'time' => 0),
+		array('mimetype' => 'text/html',                     'mode' => 'A', 'time' => 0),
+		array('mimetype' => 'text/xml',                      'mode' => 'A', 'time' => 0),
+		array('mimetype' => 'application/xml',               'mode' => 'A', 'time' => 0),
+		array('mimetype' => 'application/json',              'mode' => 'A', 'time' => 0),
+		array('mimetype' => 'application/rss+xml',           'mode' => 'A', 'time' => (60*60)),
+		array('mimetype' => 'application/atom+xml',          'mode' => 'A', 'time' => (60*60)),
+		array('mimetype' => 'image/x-icon',                  'mode' => 'A', 'time' => (60*60*24*7.5)),
+		array('mimetype' => 'image/gif',                     'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'image/png',                     'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'image/jpg',                     'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'image/jpeg',                    'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'video/ogg',                     'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'audio/ogg',                     'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'video/mp4',                     'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'video/webm',                    'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'text/x-component',              'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'application/x-font-ttf',        'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'font/opentype',                 'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'application/x-font-woff',       'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'image/svg+xml',                 'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'application/vnd.ms-fontobject', 'mode' => 'A', 'time' => (60*60*24*30)),
+		array('mimetype' => 'text/css',                      'mode' => 'A', 'time' => (60*60*24*30*12)),
+		array('mimetype' => 'application/javascript',        'mode' => 'A', 'time' => (60*60*24*30*12)),
 	),
-	'htaccess_expires_template' => 'htaccess_expires_h5bp',
 	/* custom config */
-	'htaccess_module_custom' => false,
+	'htaccess_module_custom'       => false,
+	'htaccess_custom'              => '',
 	/* rewrite config */
-	'htaccess_module_rewrite'   => true,
-	'htaccess_rewrite_template' => 'htaccess_rewrite_h5bp'
+	'htaccess_module_rewrite'      => true,
+	'htaccess_rewrite_rules'       => '',
+	'htaccess_rewrite_prepend_www' => false,
+	'htaccess_rewrite_remove_www'  => false,
+	'htaccess_rewrite_gzip'        => false,
+	'htaccess_rewrite_suffix'      => 'html',
+	/* h5bp settings */
+	'htaccess_module_h5bp'                => false,
+	'htaccess_h5bp_ie_x_ua_compatible'    => false,
+	'htaccess_h5bp_cross_domain_ajax'     => false,
+	'htaccess_h5bp_concatenation_include' => false,
+	'htaccess_h5bp_ie_flicker_fix'        => false
 );

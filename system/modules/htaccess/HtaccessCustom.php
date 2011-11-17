@@ -51,7 +51,7 @@ class HtaccessCustom implements HtaccessModule
 	 */
 	public function generateModule($strSubmoduleCode)
 	{
-		$objTemplate = new BackendTemplate($GLOBALS['TL_CONFIG']['htaccess_custom_template']);
+		$objTemplate = new BackendTemplate('htaccess_custom_' . $GLOBALS['TL_CONFIG']['htaccess_template']);
 		$objTemplate->submodules = $strSubmoduleCode;
 		$objTemplate->content = $GLOBALS['TL_CONFIG']['htaccess_custom'];
 		return $objTemplate->parse();

@@ -34,15 +34,15 @@
 
 
 /**
- * Class HtaccessHeaders
+ * Class HtaccessHtml5Boilerplate
  *
- * Headers htaccess configuration module.
+ * html5boilerplate features module.
  *
  * @copyright  Tristan Lins 2011
  * @author     Tristan Lins <info@infinitysoft.de>
  * @package    htaccess Generator
  */
-class HtaccessHeaders implements HtaccessModule
+class HtaccessHtml5Boilerplate implements HtaccessModule, HtaccessSubmodule
 {
 	/**
 	 * Generate this module code.
@@ -51,8 +51,23 @@ class HtaccessHeaders implements HtaccessModule
 	 */
 	public function generateModule($strSubmoduleCode)
 	{
-		$objTemplate = new BackendTemplate('htaccess_headers_' . $GLOBALS['TL_CONFIG']['htaccess_template']);
-		$objTemplate->submodules = $strSubmoduleCode;
+		$objTemplate = new BackendTemplate('htaccess_h5bp_features');
+		$objTemplate->submodules            = $strSubmoduleCode;
+		$objTemplate->concatenation_include = $GLOBALS['TL_CONFIG']['htaccess_h5bp_concatenation_include'];
+		$objTemplate->ie_flicker_fix        = $GLOBALS['TL_CONFIG']['htaccess_h5bp_ie_flicker_fix'];
+		return $objTemplate->parse();
+	}
+
+	/**
+	 * Generate this sub module code.
+	 *
+	 * @return string
+	 */
+	public function generateSubmodule()
+	{
+		$objTemplate = new BackendTemplate('htaccess_h5bp_features_headers');
+		$objTemplate->ie_x_ua_compatible = $GLOBALS['TL_CONFIG']['htaccess_h5bp_ie_x_ua_compatible'];
+		$objTemplate->cross_domain_ajax  = $GLOBALS['TL_CONFIG']['htaccess_h5bp_cross_domain_ajax'];
 		return $objTemplate->parse();
 	}
 }

@@ -25,18 +25,31 @@
 	##
 	<?php
 	foreach ($this->prependWWW as $strDomain):
-	?>RewriteCond %{HTTP_HOST} ^<?php echo preg_quote($strDomain); ?> [NC]
+	?>RewriteCond %{HTTPS} !=on
+	RewriteCond %{HTTP_HOST} ^<?php echo preg_quote($strDomain); ?> [NC]
 	RewriteRule (.*) http://www.<?php echo $strDomain; ?>/$1 [R=301,L]
 	
 	<?php
 	endforeach;
 	foreach ($this->removeWWW as $strDomain):
-	?>RewriteCond %{HTTP_HOST} ^www\.<?php echo preg_quote($strDomain); ?> [NC]
+	?>RewriteCond %{HTTPS} !=on
+	RewriteCond %{HTTP_HOST} ^www\.<?php echo preg_quote($strDomain); ?> [NC]
 	RewriteRule (.*) http://<?php echo $strDomain; ?>/$1 [R=301,L]
 
 	<?php
 	endforeach;
 	?>
+
+	# ----------------------------------------------------------------------
+	# Prevent SSL cert warnings
+	# ----------------------------------------------------------------------
+
+	# Rewrite secure requests properly to prevent SSL cert warnings, e.g. prevent
+	# https://www.example.com when your cert only allows https://secure.example.com
+	# Uncomment the following lines to use this feature.
+
+	# RewriteCond %{SERVER_PORT} !^443
+	# RewriteRule ^ https://example-domain-please-change-me.com%{REQUEST_URI} [R=301,L]
 
 	<?php echo $this->rules; ?>
 
