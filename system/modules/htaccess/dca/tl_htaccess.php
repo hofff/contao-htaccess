@@ -102,7 +102,7 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_etag_disable'],
 			'inputType'               => 'checkbox',
-			'eval'                    => array('tl_class'=>'m12 w50')
+			'eval'                    => array('tl_class'=>'m12')
 		),
 		'htaccess_mime_types'        => array
 		(
