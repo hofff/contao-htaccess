@@ -99,6 +99,7 @@ class HtaccessRewrite extends System implements HtaccessModule
 		$objTemplate->rules      = $GLOBALS['TL_CONFIG']['htaccess_rewrite_rules'];
 		$objTemplate->prependWWW = $arrPrependWWW;
 		$objTemplate->removeWWW  = $arrRemoveWWW;
+		$objTemplate->dynamicWWW = $GLOBALS['TL_CONFIG']['htaccess_rewrite_dynamic_www'];
 		$objTemplate->gzip       = $GLOBALS['TL_CONFIG']['htaccess_rewrite_gzip'];
 		$objTemplate->suffix     = $GLOBALS['TL_CONFIG']['htaccess_rewrite_suffix'];
 		return $objTemplate->parse();

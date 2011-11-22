@@ -38,6 +38,32 @@
 
 	<?php
 	endforeach;
+	if ($this->dynamicWWW == 'prepend'):
+	?>
+
+	# rewrite "example.com -> www.example.com"
+	# Be aware that the following rule might not be a good idea if you
+	# use "real" subdomains for certain parts of your website.
+
+	<IfModule mod_rewrite.c>
+		RewriteCond %{HTTPS} !=on
+		RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
+		RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+	</IfModule>
+	<?php
+	endif;
+	if ($this->dynamicWWW == 'remove'):
+	?>
+
+	# Rewrite "www.example.com -> example.com"
+
+	<IfModule mod_rewrite.c>
+		RewriteCond %{HTTPS} !=on
+		RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+		RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+	</IfModule>
+	<?php
+	endif;
 	?>
 
 	# ----------------------------------------------------------------------

@@ -67,7 +67,7 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'htaccess_headers'  => array(),
 			'htaccess_expires'  => array('htaccess_expires_default', 'htaccess_expires'),
 			'htaccess_custom'   => array(':hide', 'htaccess_custom'),
-			'htaccess_rewrite'  => array('htaccess_rewrite_rules', 'htaccess_rewrite_prepend_www', 'htaccess_rewrite_remove_www', 'htaccess_rewrite_gzip', 'htaccess_rewrite_suffix'),
+			'htaccess_rewrite'  => array('htaccess_rewrite_rules', 'htaccess_rewrite_prepend_www', 'htaccess_rewrite_remove_www', 'htaccess_rewrite_dynamic_www', 'htaccess_rewrite_gzip', 'htaccess_rewrite_suffix'),
 			'htaccess_h5bp'     => array('htaccess_h5bp_ie_x_ua_compatible', 'htaccess_h5bp_cross_domain_ajax', 'htaccess_h5bp_concatenation_include', 'htaccess_h5bp_ie_flicker_fix')
 		)
 	),
@@ -254,6 +254,14 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_remove_www'],
 			'inputType'               => 'checkbox',
 			'eval'                    => array('tl_class'=>'w50')
+		),
+		'htaccess_rewrite_dynamic_www'     => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_dynamic_www'],
+			'inputType'               => 'radio',
+			'options'                 => array('prepend', 'remove'),
+			'reference'               => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_dynamic_www'],
+			'eval'                    => array('tl_class'=>'clr', 'includeBlankOption'=>true)
 		),
 		'htaccess_rewrite_gzip'     => array
 		(

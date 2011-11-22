@@ -104,8 +104,9 @@ $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_custom']        = array('Custom Cod
  */
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_legend']      = 'Rewrite Modul';
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_rules']       = array('Eigene Rewrite Regeln', 'Definieren Sie hier Ihre eigenen Rewrite Regeln.');
-$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_prepend_www'] = array('www. hinzufügen', 'Rewrite Regel für Domains mit www. erzeugen, so dass beim Aufruf der Domain ohne www. zur Domain mit www. umgeleitet wird.');
-$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_remove_www']  = array('www. entfernen', 'Rewrite Regel für Domains ohne www. erzeugen, so dass beim Aufruf der Domain mit www. zur Domain ohne www. umgeleitet wird.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_prepend_www'] = array('www. hinzufügen', 'Rewrite Regel für eingetragene Domains mit www. erzeugen, so dass beim Aufruf der Domain ohne www. zur Domain mit www. umgeleitet wird. Die Domain muss in der Seitenstruktur in dem Startpunkt der Website eingetragen werden.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_remove_www']  = array('www. entfernen', 'Rewrite Regel für eingetragene Domains ohne www. erzeugen, so dass beim Aufruf der Domain mit www. zur Domain ohne www. umgeleitet wird. Die Domain muss in der Seitenstruktur in dem Startpunkt der Website eingetragen werden.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_dynamic_www'] = array('www. dynamisch hinzufügen oder entfernen', 'Dynamische Rewrite Regel für beliebige Domains erzeugen, so dass beim Aufruf der Domain ohne www. zur Domain mit www. umgeleitet wird bzw. umgekehrt.', 'prepend'=>'hinzufügen', 'remove'=>'entfernen');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_gzip']        = array('.gz Rewrite', 'Rewrite Regel für vorkomprimierte .gz Dateien erzeugen. Leitet transparent Aufrufe von .js und .css Dateien auf vorkomprimierte .js.gz bzw. .css.gz Dateien.');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_suffix']      = array('Contao Rewrite Suffix', 'Definieren Sie hier den Dateisuffix (z.B. html) für die der Requests auf Contao umgeleitet werden soll. Kann auch leer gelassen werden, um alle dynamischen Requests umzuleiten.');
 
