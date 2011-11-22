@@ -38,7 +38,7 @@
  *
  * Manage the .htaccess file
  *
- * @copyright  Tristan Lins 2011
+ * @copyright  InfinitySoft 2011
  * @author     Tristan Lins <info@infinitysoft.de>
  * @package    htaccess Generator
  */

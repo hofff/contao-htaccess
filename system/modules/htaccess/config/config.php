@@ -34,6 +34,12 @@
 
 
 /**
+ * Include htaccess config file.
+ */
+include(TL_ROOT . '/system/config/htaccess.php');
+
+
+/**
  * Back end modules
  */
 $GLOBALS['BE_MOD']['system']['htaccess'] = array

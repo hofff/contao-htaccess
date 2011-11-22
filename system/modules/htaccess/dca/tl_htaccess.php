@@ -42,9 +42,9 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 	// Config
 	'config' => array
 	(
-		'dataContainer'               => 'File',
+		'dataContainer'               => 'File_Htaccess',
 		'closed'                      => true,
-		'onload_callback'           => array
+		'onload_callback'             => array
 		(
 			array('tl_htaccess', 'onload')
 		),
@@ -313,6 +313,8 @@ class tl_htaccess extends Backend
 	{
 		if (isset($GLOBALS['TL_HTACCESS_DEFAULTS'][$strPresettings]))
 		{
+			$this->import('HtaccessConfig', 'Config', true);
+			
 			foreach ($GLOBALS['TL_HTACCESS_DEFAULTS'][$strPresettings] as $k=>$v)
 			{
 				if (preg_match('#^htaccess_#', $k))
