@@ -54,21 +54,23 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 		)
 	),
 
-	// Palettes
-	'palettes' => array
+	// meta pallettes
+	'metapalettes' => array
 	(
-		'default'                     => '{htaccess_settings_legend:hide},htaccess_load_settings;'
-		                                 .'{htaccess_base_legend},htaccess_template;'
-		                                 .'{htaccess_etag_legend},htaccess_etag_disable;'
-		                                 .'{htaccess_mime_legend},htaccess_mime_types;'
-		                                 .'{htaccess_deflate_legend},htaccess_deflate_files;'
-		                                 .'{htaccess_headers_legend};'
-		                                 .'{htaccess_expires_legend},htaccess_expires_default,htaccess_expires;'
-		                                 .'{htaccess_custom_legend},htaccess_custom;'
-		                                 .'{htaccess_rewrite_legend},htaccess_rewrite_rules,htaccess_rewrite_prepend_www,htaccess_rewrite_remove_www,htaccess_rewrite_gzip,htaccess_rewrite_suffix;'
-		                                 .'{htaccess_h5bp_legend},htaccess_h5bp_ie_x_ua_compatible,htaccess_h5bp_cross_domain_ajax,htaccess_h5bp_concatenation_include,htaccess_h5bp_ie_flicker_fix'
+		'default' => array
+		(
+			'htaccess_settings' => array(':hide', 'htaccess_load_settings', 'htaccess_load_previous'),
+			'htaccess_base'     => array('htaccess_template'),
+			'htaccess_etag'     => array('htaccess_etag_disable'),
+			'htaccess_mime'     => array('htaccess_mime_types'),
+			'htaccess_deflate'  => array('htaccess_deflate_files'),
+			'htaccess_headers'  => array(),
+			'htaccess_expires'  => array('htaccess_expires_default', 'htaccess_expires'),
+			'htaccess_custom'   => array(':hide', 'htaccess_custom'),
+			'htaccess_rewrite'  => array('htaccess_rewrite_rules', 'htaccess_rewrite_prepend_www', 'htaccess_rewrite_remove_www', 'htaccess_rewrite_gzip', 'htaccess_rewrite_suffix'),
+			'htaccess_h5bp'     => array('htaccess_h5bp_ie_x_ua_compatible', 'htaccess_h5bp_cross_domain_ajax', 'htaccess_h5bp_concatenation_include', 'htaccess_h5bp_ie_flicker_fix')
+		)
 	),
-
 
 	// Fields
 	'fields' => array
