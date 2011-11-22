@@ -51,42 +51,34 @@ class Htaccess extends System
 		// walk over modules
 		foreach ($GLOBALS['TL_HTACCESS'] as $strModule=>$strClass)
 		{
-			// only generate if is it activated
-			if ($GLOBALS['TL_CONFIG']['htaccess_module_' . $strModule])
+			/** @var HtaccessModule */
+			$objModule = new $strClass();
+
+			$strSubmoduleCode = '';
+
+			// walk over sub modules if there any
+			if (is_array($GLOBALS['TL_HTACCESS_SUBMODULES'][$strModule]))
 			{
-				/** @var HtaccessModule */
-				$objModule = new $strClass();
-
-				$strSubmoduleCode = '';
-
-				// walk over sub modules if there any
-				if (is_array($GLOBALS['TL_HTACCESS_SUBMODULES'][$strModule]))
+				foreach ($GLOBALS['TL_HTACCESS_SUBMODULES'][$strModule] as $strSubmodule=>$strSubclass)
 				{
-					foreach ($GLOBALS['TL_HTACCESS_SUBMODULES'][$strModule] as $strSubmodule=>$strSubclass)
-					{
-						// only generate if is it activated
-						if ($GLOBALS['TL_CONFIG']['htaccess_module_' . $strSubmodule])
-						{
-							/** @var HtaccessSubmodule */
-							$objSubmodule = new $strSubclass();
+					/** @var HtaccessSubmodule */
+					$objSubmodule = new $strSubclass();
 
-							$strSubmoduleCode .= "\n# --- submodule $strSubmodule start ---\n";
+					$strSubmoduleCode .= "\n# --- submodule $strSubmodule start ---\n";
 
-							// generate the sub module
-							$strSubmoduleCode .= $objSubmodule->generateSubmodule();
+					// generate the sub module
+					$strSubmoduleCode .= $objSubmodule->generateSubmodule();
 
-							$strSubmoduleCode .= "\n# --- submodule $strSubmodule end ---\n";
-						}
-					}
+					$strSubmoduleCode .= "\n# --- submodule $strSubmodule end ---\n";
 				}
-
-				$strModules .= "\n# --- module $strModule start ---\n";
-
-				// generate the module
-				$strModules .= $objModule->generateModule($strSubmoduleCode);
-
-				$strModules .= "\n# --- module $strModule end ---\n";
 			}
+
+			$strModules .= "\n# --- module $strModule start ---\n";
+
+			// generate the module
+			$strModules .= $objModule->generateModule($strSubmoduleCode);
+
+			$strModules .= "\n# --- module $strModule end ---\n";
 		}
 
 		$objTemplate = new BackendTemplate('htaccess_base_' . $GLOBALS['TL_CONFIG']['htaccess_template']);

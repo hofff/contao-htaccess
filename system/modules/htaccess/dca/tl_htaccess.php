@@ -57,22 +57,18 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'__selector__'                => array('htaccess_module_etag', 'htaccess_module_mime', 'htaccess_module_deflate', 'htaccess_module_headers', 'htaccess_module_expires', 'htaccess_module_custom', 'htaccess_module_rewrite', 'htaccess_module_h5bp'),
-		'default'                     => '{htaccess_settings_legend:hide},htaccess_load_settings;{htaccess_base_legend},htaccess_template;{htaccess_etag_legend},htaccess_module_etag;{htaccess_mime_legend},htaccess_module_mime;{htaccess_deflate_legend},htaccess_module_deflate;{htaccess_headers_legend},htaccess_module_headers;{htaccess_expires_legend},htaccess_module_expires;{htaccess_custom_legend},htaccess_module_custom;{htaccess_rewrite_legend},htaccess_module_rewrite;{htaccess_h5bp_legend},htaccess_module_h5bp'
+		'default'                     => '{htaccess_settings_legend:hide},htaccess_load_settings;'
+		                                 .'{htaccess_base_legend},htaccess_template;'
+		                                 .'{htaccess_etag_legend},htaccess_etag_disable;'
+		                                 .'{htaccess_mime_legend},htaccess_mime_types;'
+		                                 .'{htaccess_deflate_legend},htaccess_deflate_files;'
+		                                 .'{htaccess_headers_legend};'
+		                                 .'{htaccess_expires_legend},htaccess_expires_default,htaccess_expires;'
+		                                 .'{htaccess_custom_legend},htaccess_custom;'
+		                                 .'{htaccess_rewrite_legend},htaccess_rewrite_rules,htaccess_rewrite_prepend_www,htaccess_rewrite_remove_www,htaccess_rewrite_gzip,htaccess_rewrite_suffix;'
+		                                 .'{htaccess_h5bp_legend},htaccess_h5bp_ie_x_ua_compatible,htaccess_h5bp_cross_domain_ajax,htaccess_h5bp_concatenation_include,htaccess_h5bp_ie_flicker_fix'
 	),
 
-	// Subpalettes
-	'subpalettes' => array
-	(
-		'htaccess_module_etag'        => '',
-		'htaccess_module_mime'        => 'htaccess_mime_types',
-		'htaccess_module_deflate'     => 'htaccess_deflate_files',
-		'htaccess_module_headers'     => '',
-		'htaccess_module_expires'     => 'htaccess_expires_default,htaccess_expires',
-		'htaccess_module_custom'      => 'htaccess_custom',
-		'htaccess_module_rewrite'     => 'htaccess_rewrite_rules,htaccess_rewrite_prepend_www,htaccess_rewrite_remove_www,htaccess_rewrite_gzip,htaccess_rewrite_suffix',
-		'htaccess_module_h5bp'        => 'htaccess_h5bp_ie_x_ua_compatible,htaccess_h5bp_cross_domain_ajax,htaccess_h5bp_concatenation_include,htaccess_h5bp_ie_flicker_fix'
-	),
 
 	// Fields
 	'fields' => array
@@ -85,24 +81,18 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'save_callback'           => array(array('tl_htaccess', 'loadSettings')),
 			'eval'                    => array('includeBlankOption'=>true)
 		),
-		'htaccess_template'   => array
+		'htaccess_template'           => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_template'],
 			'inputType'               => 'select',
 			'options'                 => array_map(create_function('$s', 'return substr($s, 14);'), $this->getTemplateGroup('htaccess_base_')),
 			'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50')
 		),
-		'htaccess_module_etag'        => array
+		'htaccess_etag_disable'       => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_module_etag'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_etag_disable'],
 			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true)
-		),
-		'htaccess_module_mime'        => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_module_mime'],
-			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true)
+			'eval'                    => array('tl_class'=>'m12 w50')
 		),
 		'htaccess_mime_types'        => array
 		(
@@ -136,12 +126,6 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 				)
 			)
 		),
-		'htaccess_module_deflate'     => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_module_deflate'],
-			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true)
-		),
 		'htaccess_deflate_files'        => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_deflate_files'],
@@ -159,18 +143,6 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 					)
 				)
 			)
-		),
-		'htaccess_module_headers'     => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_module_headers'],
-			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true)
-		),
-		'htaccess_module_expires'     => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_module_expires'],
-			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true)
 		),
 		'htaccess_expires_default'    => array
 		(
@@ -249,23 +221,11 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 				)
 			)
 		),
-		'htaccess_module_custom'     => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_module_custom'],
-			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true)
-		),
 		'htaccess_custom'   => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_custom'],
 			'inputType'               => 'textarea',
-			'eval'                    => array('mandatory'=>true, 'allowHtml'=>true, 'preserveTags'=>true, 'decodeEntities'=>true, 'rte'=>'codeMirror')
-		),
-		'htaccess_module_rewrite'     => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_module_rewrite'],
-			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true)
+			'eval'                    => array('allowHtml'=>true, 'preserveTags'=>true, 'decodeEntities'=>true, 'rte'=>'codeMirror')
 		),
 		'htaccess_rewrite_rules'   => array
 		(
@@ -296,12 +256,6 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_suffix'],
 			'inputType'               => 'text',
 			'eval'                    => array('rgxp'=>'alpha', 'tl_class'=>'w50')
-		),
-		'htaccess_module_h5bp'     => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_module_h5bp'],
-			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true)
 		),
 		'htaccess_h5bp_ie_x_ua_compatible' => array
 		(

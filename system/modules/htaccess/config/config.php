@@ -195,15 +195,13 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['contao'] = array
 (
 	'htaccess_template'            => 'contao',
 	/* etag config */
-	'htaccess_module_etag'         => true,
+	'htaccess_etag_disable'        => true,
 	/* mime config */
-	'htaccess_module_mime'         => true,
 	'htaccess_mime_types'          => array
 	(
 		array('extension' => 'htc', 'mimetype' => 'text/x-component')
 	),
 	/* deflate config */
-	'htaccess_module_deflate'      => true,
 	'htaccess_deflate_files'       => array
 	(
 		array('extension' => 'css'),
@@ -212,10 +210,7 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['contao'] = array
 		array('extension' => 'html?'),
 		array('extension' => 'php')
 	),
-	/* headers config */
-	'htaccess_module_headers'      => true,
 	/* expires config */
-	'htaccess_module_expires'      => true,
 	'htaccess_expires_default'     => (60*60*24*30),
 	'htaccess_expires'             => array
 	(
@@ -230,17 +225,14 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['contao'] = array
 		array('mimetype' => 'image/x-icon',             'mode' => 'A', 'time' => (60*60*24*30)),
 	),
 	/* custom config */
-	'htaccess_module_custom'       => false,
 	'htaccess_custom'              => '',
 	/* rewrite config */
-	'htaccess_module_rewrite'      => true,
 	'htaccess_rewrite_rules'       => '',
 	'htaccess_rewrite_prepend_www' => false,
 	'htaccess_rewrite_remove_www'  => false,
 	'htaccess_rewrite_gzip'        => false,
 	'htaccess_rewrite_suffix'      => 'html',
 	/* h5bp settings */
-	'htaccess_module_h5bp'                => false,
 	'htaccess_h5bp_ie_x_ua_compatible'    => false,
 	'htaccess_h5bp_cross_domain_ajax'     => false,
 	'htaccess_h5bp_concatenation_include' => false,
@@ -255,9 +247,8 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['html5boilerplate'] = array
 (
 	'htaccess_template'            => 'h5bp',
 	/* etag config */
-	'htaccess_module_etag'         => true,
+	'htaccess_etag_disable'        => true,
 	/* mime config */
-	'htaccess_module_mime'         => true,
 	'htaccess_mime_types'          => array
 	(
 		array('extension' => 'htc',               'mimetype' => 'text/x-component'),
@@ -284,7 +275,6 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['html5boilerplate'] = array
 		array('extension' => 'vcf',               'mimetype' => 'text/x-vcard')
 	),
 	/* deflate config */
-	'htaccess_module_deflate'      => true,
 	'htaccess_deflate_files'       => array
 	(
 		array('extension' => 'text/html'),
@@ -304,10 +294,7 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['html5boilerplate'] = array
 		array('extension' => 'application/x-font-ttf'),
 		array('extension' => 'font/opentype')
 	),
-	/* headers config */
-	'htaccess_module_headers'      => true,
 	/* expires config */
-	'htaccess_module_expires'      => true,
 	'htaccess_expires_default'     => (60*60*24*30),
 	'htaccess_expires'             => array
 	(
@@ -337,17 +324,14 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['html5boilerplate'] = array
 		array('mimetype' => 'application/javascript',        'mode' => 'A', 'time' => (60*60*24*30*12)),
 	),
 	/* custom config */
-	'htaccess_module_custom'       => false,
 	'htaccess_custom'              => '',
 	/* rewrite config */
-	'htaccess_module_rewrite'      => true,
 	'htaccess_rewrite_rules'       => '',
 	'htaccess_rewrite_prepend_www' => false,
 	'htaccess_rewrite_remove_www'  => false,
 	'htaccess_rewrite_gzip'        => false,
 	'htaccess_rewrite_suffix'      => 'html',
 	/* h5bp settings */
-	'htaccess_module_h5bp'                => false,
 	'htaccess_h5bp_ie_x_ua_compatible'    => false,
 	'htaccess_h5bp_cross_domain_ajax'     => false,
 	'htaccess_h5bp_concatenation_include' => false,

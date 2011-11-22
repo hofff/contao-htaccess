@@ -1,3 +1,5 @@
+<?php if ($this->disabled): ?>
+
 # ----------------------------------------------------------------------
 # ETag removal
 # ----------------------------------------------------------------------
@@ -6,3 +8,4 @@
 # static content.
 #   developer.yahoo.com/performance/rules.html#etags
 FileETag None
+<?php endif; ?>
