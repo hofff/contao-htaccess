@@ -81,7 +81,15 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'inputType'               => 'select',
 			'options'                 => array_keys($GLOBALS['TL_HTACCESS_DEFAULTS']),
 			'save_callback'           => array(array('tl_htaccess', 'loadSettings')),
-			'eval'                    => array('includeBlankOption'=>true)
+			'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50')
+		),
+		'htaccess_load_previous'      => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_load_previous'],
+			'inputType'               => 'select',
+			'options_callback'        => array('tl_htaccess', 'previousOptions'),
+			'save_callback'           => array(array('tl_htaccess', 'loadPrevious')),
+			'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50')
 		),
 		'htaccess_template'           => array
 		(
@@ -290,6 +298,11 @@ class tl_htaccess extends Backend
 	protected $Htaccess;
 
 	/**
+	 * @var Files
+	 */
+	protected $Files;
+
+	/**
 	 * @return void
 	 */
 	public function onload()
@@ -304,6 +317,22 @@ class tl_htaccess extends Backend
 	{
 		$this->import('Htaccess');
 		$this->Htaccess->update();
+	}
+
+	/**
+	 * @return array
+	 */
+	public function previousOptions()
+	{
+		$arrOptions = array();
+		$objIterator = new RegexIterator(new DirectoryIterator(TL_ROOT . '/system/config'), '#^htaccess\.\d+\.php$#');
+		foreach ($objIterator as $strFile)
+		{
+			$intTime = intval(substr($strFile, 9, -4));
+			$arrOptions[$intTime] = $this->parseDate('d.m.Y - H:i:s', $intTime);
+		}
+		krsort($arrOptions);
+		return $arrOptions;
 	}
 
 	/**
@@ -324,6 +353,28 @@ class tl_htaccess extends Backend
 				}
 			}
 			$_SESSION['TL_INFO'][] = sprintf($GLOBALS['TL_LANG']['tl_htaccess']['loadSettings'], $strPresettings);
+			$this->reload();
+		}
+	}
+
+	/**
+	 * Load previous version
+	 */
+	public function loadPrevious($intPrevious)
+	{
+		$strFile = 'system/config/htaccess.' . $intPrevious . '.php';
+		if (file_exists(TL_ROOT . '/' . $strFile))
+		{
+			$this->import('Files');
+			
+			// Move current file
+			$objFile = new File('system/config/htaccess.php');
+			$this->Files->rename('system/config/htaccess.php', 'system/config/htaccess.' . $objFile->mtime . '.php');
+
+			// Copy previous file
+			$this->Files->copy($strFile, 'system/config/htaccess.php');
+
+			$_SESSION['TL_INFO'][] = sprintf($GLOBALS['TL_LANG']['tl_htaccess']['loadPrevious'], $this->parseDate('d.m.Y - H:i:s', $intPrevious));
 			$this->reload();
 		}
 	}

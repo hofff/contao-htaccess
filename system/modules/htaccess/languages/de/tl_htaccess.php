@@ -41,10 +41,13 @@ $GLOBALS['TL_LANG']['tl_htaccess']['edit']                     = '.htaccess Konf
 /**
  * settings
  */
-$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_settings_legend'] = 'Voreinstellungen';
-$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_load_settings'] = array('Voreinstellungen laden', 'Lädt ein Set ein Voreinstellungen, dieser Vorgang kann nicht rückgängig gemacht werden!');
-$GLOBALS['TL_LANG']['tl_htaccess']['confirmLoadSettings']      = 'Sind Sie sicher, dass Sie die Voreinstellung laden wollen?\nDieser Vorgang kann nicht rückgängig gemacht werden!';
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_settings_legend'] = 'Voreinstellungen und vorherige Versionen';
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_load_settings']   = array('Voreinstellungen laden', 'Lädt ein Set ein Voreinstellungen.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_load_previous']   = array('Vorherige Version laden', 'Lädt eine vorherige Version.');
+$GLOBALS['TL_LANG']['tl_htaccess']['confirmLoadSettings']      = 'Sind Sie sicher, dass Sie die Voreinstellung laden wollen?';
+$GLOBALS['TL_LANG']['tl_htaccess']['confirmLoadSettings']      = 'Sind Sie sicher, dass Sie die vorherige Version laden wollen?';
 $GLOBALS['TL_LANG']['tl_htaccess']['loadSettings']             = 'Voreinstellungsset <strong>%s</strong> wurde geladen!<br/>Überprüfen und Speichern Sie die Einstellungen um die .htaccess Datei zu aktualisieren.';
+$GLOBALS['TL_LANG']['tl_htaccess']['loadPrevious']             = 'Version vom <strong>%s</strong> wurde geladen!<br/>Überprüfen und Speichern Sie die Einstellungen um die .htaccess Datei zu aktualisieren.';
 
 /**
  * general
