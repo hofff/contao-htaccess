@@ -235,13 +235,13 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_custom'],
 			'inputType'               => 'textarea',
-			'eval'                    => array('allowHtml'=>true, 'preserveTags'=>true, 'decodeEntities'=>true, 'rte'=>'codeMirror')
+			'eval'                    => array('allowHtml'=>true, 'preserveTags'=>true, 'decodeEntities'=>true, 'rte'=>(version_compare(VERSION, '2.10') >= 0 ? 'codeMirror' : ''))
 		),
 		'htaccess_rewrite_rules'   => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_rules'],
 			'inputType'               => 'textarea',
-			'eval'                    => array('allowHtml'=>true, 'preserveTags'=>true, 'decodeEntities'=>true, 'rte'=>'codeMirror')
+			'eval'                    => array('allowHtml'=>true, 'preserveTags'=>true, 'decodeEntities'=>true, 'rte'=>(version_compare(VERSION, '2.10') >= 0 ? 'codeMirror' : ''))
 		),
 		'htaccess_rewrite_prepend_www'     => array
 		(
