@@ -59,8 +59,8 @@ $GLOBALS['TL_LANG']['tl_htaccess']['updateHtaccess']       = 'Die .htaccess Date
 /**
  * etag module
  */
-$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_etag_legend']           = 'ETag Modul';
-$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_etag_disable']          = array('ETag deaktivieren', 'ETag Support deaktivieren.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_etag_legend']  = 'ETag Modul';
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_etag_disable'] = array('ETag deaktivieren', 'ETag Support deaktivieren.');
 
 /**
  * mime module
@@ -96,8 +96,8 @@ $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time']     = array('Zeit', 
 /**
  * custom module
  */
-$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_custom_legend']   = 'Custom Modul';
-$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_custom']          = array('Custom Code', 'Geben Sie hier Ihren .htaccess Code ein.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_custom_legend'] = 'Custom Modul';
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_custom']        = array('Custom Code', 'Geben Sie hier Ihren .htaccess Code ein.');
 
 /**
  * rewrite module
@@ -112,7 +112,7 @@ $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_suffix']      = array('Cont
 /**
  * html5boilderplate settings
  */
-$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_legend']      = 'html5boilderplate Einstellungen';
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_legend']                = 'html5boilderplate Einstellungen';
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_ie_x_ua_compatible']    = array('Neueste IE Engine erzwingen', 'Erzwingt den IE die neueste Engine zu verwenden und den Kompatibilitätsmodus zu umgehen.');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_cross_domain_ajax']     = array('Cross-Domain AJAX Requests', 'Cross-Domain AJAX Requests erlauben.');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_concatenation_include'] = array('Includes in CSS/JS Dateien erlauben', 'Erlaubt <a href="https://github.com/h5bp/html5-boilerplate/blob/master/.htaccess#L111" target="_blank">Server-Side-Includes</a> in *.combined.css/js Dateien. In der *.combined.* Datei müssen Includes eingefügt werden, um so eine dynamisch vereinheitlichte Datei zu erhalten.');
