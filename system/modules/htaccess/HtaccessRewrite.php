@@ -95,7 +95,7 @@ class HtaccessRewrite extends System implements HtaccessModule
 
 		$objTemplate = new BackendTemplate('htaccess_rewrite_' . $GLOBALS['TL_CONFIG']['htaccess_template']);
 		$objTemplate->submodules = $strSubmoduleCode;
-		$objTemplate->base       = $GLOBALS['TL_CONFIG']['websitePath'];
+		$objTemplate->base       = $GLOBALS['TL_CONFIG']['websitePath'] ? $GLOBALS['TL_CONFIG']['websitePath'] : '/';
 		$objTemplate->rules      = $GLOBALS['TL_CONFIG']['htaccess_rewrite_rules'];
 		$objTemplate->prependWWW = $arrPrependWWW;
 		$objTemplate->removeWWW  = $arrRemoveWWW;
