@@ -61,6 +61,19 @@ $GLOBALS['TL_LANG']['tl_htaccess']['updateHtaccess']       = 'Die .htaccess Date
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_default_charset'] = array('Standard Zeichensatz', 'Wählen Sie hier den Standardzeichensatz, der für die Verbindung und Dateien verwendet werden soll.');
 
 /**
+ * auth module
+ */
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_legend']   = 'Auth Modul';
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_enabled']  = array('Authentifizierung aktivieren', 'Authentifizierung beim besuchen der Seite ist erforderlich.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_mode']     = array('Anmeldeverfahren', 'Wählen Sie hier das Anmeldeverfahren für die Authentifizierung. Digest ist sicherer, weil das Passwort nicht im Klartext übertragen wird, ist aber nicht bei jedem Hoster verfügbar.');
+$GLOBALS['TL_LANG']['tl_htaccess']['digest']                 = 'Digest Authentifizierung';
+$GLOBALS['TL_LANG']['tl_htaccess']['basic']                  = 'Basic Authentifizierung';
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_name']     = array('Name des Authentifizierungsbereichs', 'Geben Sie hier einen Namen für die Authentifizierung ein, dieser wird dem Besucher angezeigt.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_users']    = array('Zugänge', 'Tragen Sie hier die Zugänge ein.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_username'] = array('Benutzername');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_password'] = array('Passwort');
+
+/**
  * etag module
  */
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_etag_legend']  = 'ETag Modul';

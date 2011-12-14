@@ -52,6 +52,7 @@ $GLOBALS['BE_MOD']['system']['htaccess'] = array
 /**
  * htaccess Modules
  */
+$GLOBALS['TL_HTACCESS']['auth']    = 'HtaccessAuth';
 $GLOBALS['TL_HTACCESS']['etag']    = 'HtaccessEtag';
 $GLOBALS['TL_HTACCESS']['mime']    = 'HtaccessMime';
 $GLOBALS['TL_HTACCESS']['deflate'] = 'HtaccessDeflate';

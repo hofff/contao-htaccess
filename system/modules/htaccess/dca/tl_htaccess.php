@@ -61,6 +61,7 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 		(
 			'htaccess_settings' => array(':hide', 'htaccess_load_settings', 'htaccess_load_previous'),
 			'htaccess_base'     => array('htaccess_default_charset'),
+			'htaccess_auth'     => array('htaccess_auth_enabled'),
 			'htaccess_etag'     => array('htaccess_etag_disable'),
 			'htaccess_mime'     => array('htaccess_mime_types'),
 			'htaccess_deflate'  => array('htaccess_deflate_files'),
@@ -70,6 +71,11 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'htaccess_rewrite'  => array('htaccess_rewrite_rules', 'htaccess_rewrite_prepend_www', 'htaccess_rewrite_remove_www', 'htaccess_rewrite_dynamic_www', 'htaccess_rewrite_gzip', 'htaccess_rewrite_suffix'),
 			'htaccess_h5bp'     => array('htaccess_h5bp_disable_multiview', 'htaccess_h5bp_disable_indexes', 'htaccess_h5bp_ie_x_ua_compatible', 'htaccess_h5bp_cross_domain_ajax', 'htaccess_h5bp_concatenation_include', 'htaccess_h5bp_ie_flicker_fix')
 		)
+	),
+
+	'metasubpalettes' => array
+	(
+		'htaccess_auth_enabled' => array('htaccess_auth_mode', 'htaccess_auth_name', 'htaccess_auth_users')
 	),
 
 	// Fields
@@ -100,6 +106,53 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'options'                 => array('utf-8', 'latin-1', 'iso-8859-1', 'iso-8859-15'),
 			'eval'                    => array('tl_class'=>'w50')
 		),
+
+		/* auth */
+		'htaccess_auth_enabled'       => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_enabled'],
+			'inputType'               => 'checkbox',
+			'eval'                    => array('tl_class'=>'m12', 'submitOnChange'=>true)
+		),
+		'htaccess_auth_mode'          => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_mode'],
+			'inputType'               => 'select',
+			'options'                 => array('digest', 'basic'),
+			'reference'               => &$GLOBALS['TL_LANG']['tl_htaccess'],
+			'eval'                    => array('tl_class'=>'w50')
+		),
+		'htaccess_auth_name'          => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_name'],
+			'inputType'               => 'text',
+			'eval'                    => array('tl_class'=>'w50')
+		),
+		'htaccess_auth_users'       => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_users'],
+			'inputType'               => 'multiColumnWizard',
+			'eval'                    => array
+			(
+				'tl_class'=>'clr',
+				'columnFields' => array
+				(
+					'username' => array
+					(
+						'label'     => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_username'],
+						'exclude'   => true,
+						'inputType' => 'text',
+						'eval'      => array('style' => 'width:150px', 'mandatory'=>true)
+					),
+					'password' => array
+					(
+						'label'     => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_password'],
+						'exclude'   => true,
+						'inputType' => 'text',
+						'eval'      => array('style' => 'width:150px', 'mandatory'=>true, 'hideInput'=>true)
+					)
+				)
+			)
 		),
 
 		/* etag */
