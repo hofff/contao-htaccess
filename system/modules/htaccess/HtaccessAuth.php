@@ -42,8 +42,13 @@
  * @author     Tristan Lins <info@infinitysoft.de>
  * @package    htaccess Generator
  */
-class HtaccessAuth implements HtaccessModule
+class HtaccessAuth extends System implements HtaccessModule
 {
+	/**
+	 * @var Encryption
+	 */
+	protected $Encryption;
+	
 	/**
 	 * Generate this module code.
 	 *
@@ -51,6 +56,8 @@ class HtaccessAuth implements HtaccessModule
 	 */
 	public function generateModule($strSubmoduleCode)
 	{
+		$this->import('Encryption');
+
 		$strName = empty($GLOBALS['TL_CONFIG']['htaccess_auth_name']) ? $GLOBALS['TL_CONFIG']['websiteTitle'] : $GLOBALS['TL_CONFIG']['htaccess_auth_name'];
 
 		$arrUsers = array();
@@ -58,7 +65,7 @@ class HtaccessAuth implements HtaccessModule
 		{
 			if (!empty($arrUser['username']) && !empty($arrUser['password']))
 			{
-				$arrUsers[$arrUser['username']] = $arrUser['password'];
+				$arrUsers[$arrUser['username']] = $this->Encryption->decrypt($arrUser['password']);
 			}
 		}
 

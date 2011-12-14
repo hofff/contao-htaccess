@@ -149,7 +149,7 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 						'label'     => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_password'],
 						'exclude'   => true,
 						'inputType' => 'text',
-						'eval'      => array('style' => 'width:150px', 'mandatory'=>true, 'hideInput'=>true)
+						'eval'      => array('style' => 'width:150px', 'mandatory'=>true, 'hideInput'=>true, 'encrypt'=>true)
 					)
 				)
 			)
