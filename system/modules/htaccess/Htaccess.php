@@ -81,7 +81,7 @@ class Htaccess extends System
 			$strModules .= "\n# --- module $strModule end ---\n";
 		}
 
-		$objTemplate = new BackendTemplate('htaccess_base_' . $GLOBALS['TL_CONFIG']['htaccess_template']);
+		$objTemplate = new BackendTemplate('htaccess_base');
 		$objTemplate->modules = $strModules;
 		$strHtaccess = $objTemplate->parse();
 		

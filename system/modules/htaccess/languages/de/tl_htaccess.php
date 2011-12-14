@@ -53,7 +53,6 @@ $GLOBALS['TL_LANG']['tl_htaccess']['loadPrevious']             = 'Version vom <s
  * general
  */
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_base_legend'] = 'Grundeinstellungen';
-$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_template']    = array('Template', 'Bitte wählen Sie das Template für die .htaccess Datei aus.');
 $GLOBALS['TL_LANG']['tl_htaccess']['updateHtaccess']       = 'Die .htaccess Datei wurde neu erstellt.';
 
 /**

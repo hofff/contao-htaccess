@@ -51,7 +51,7 @@ class HtaccessHeaders implements HtaccessModule
 	 */
 	public function generateModule($strSubmoduleCode)
 	{
-		$objTemplate = new BackendTemplate('htaccess_headers_' . $GLOBALS['TL_CONFIG']['htaccess_template']);
+		$objTemplate = new BackendTemplate('htaccess_headers');
 		$objTemplate->submodules = $strSubmoduleCode;
 		return $objTemplate->parse();
 	}

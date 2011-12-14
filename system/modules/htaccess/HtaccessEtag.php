@@ -51,7 +51,7 @@ class HtaccessEtag implements HtaccessModule, HtaccessSubmodule
 	 */
 	public function generateModule($strSubmoduleCode)
 	{
-		$objTemplate = new BackendTemplate('htaccess_etag_' . $GLOBALS['TL_CONFIG']['htaccess_template']);
+		$objTemplate = new BackendTemplate('htaccess_etag');
 		$objTemplate->submodules = $strSubmoduleCode;
 		$objTemplate->disabled   = $GLOBALS['TL_CONFIG']['htaccess_etag_disable'];
 		return $objTemplate->parse();
@@ -64,7 +64,7 @@ class HtaccessEtag implements HtaccessModule, HtaccessSubmodule
 	 */
 	public function generateSubmodule()
 	{
-		$objTemplate = new BackendTemplate('htaccess_etag_headers_' . $GLOBALS['TL_CONFIG']['htaccess_template']);
+		$objTemplate = new BackendTemplate('htaccess_etag_headers');
 		$objTemplate->disabled = $GLOBALS['TL_CONFIG']['htaccess_etag_disable'];
 		return $objTemplate->parse();
 	}

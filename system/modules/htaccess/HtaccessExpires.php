@@ -51,7 +51,7 @@ class HtaccessExpires implements HtaccessModule
 	 */
 	public function generateModule($strSubmoduleCode)
 	{
-		$objTemplate = new BackendTemplate('htaccess_expires_' . $GLOBALS['TL_CONFIG']['htaccess_template']);
+		$objTemplate = new BackendTemplate('htaccess_expires');
 		$objTemplate->submodules = $strSubmoduleCode;
 		$objTemplate->default    = $GLOBALS['TL_CONFIG']['htaccess_expires_default'];
 		$objTemplate->expires    = deserialize($GLOBALS['TL_CONFIG']['htaccess_expires'], true);

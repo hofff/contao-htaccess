@@ -60,7 +60,6 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 		'default' => array
 		(
 			'htaccess_settings' => array(':hide', 'htaccess_load_settings', 'htaccess_load_previous'),
-			'htaccess_base'     => array('htaccess_template'),
 			'htaccess_etag'     => array('htaccess_etag_disable'),
 			'htaccess_mime'     => array('htaccess_mime_types'),
 			'htaccess_deflate'  => array('htaccess_deflate_files'),
