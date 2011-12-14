@@ -83,11 +83,11 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['contao'] = array
 	/* deflate config */
 	'htaccess_deflate_files'       => array
 	(
-		array('extension' => 'css'),
-		array('extension' => 'js'),
-		array('extension' => 'xml'),
-		array('extension' => 'html?'),
-		array('extension' => 'php')
+		array('mimetype' => 'text/css'),
+		array('mimetype' => 'application/x-javascript'),
+		array('mimetype' => 'text/xml'),
+		array('mimetype' => 'text/html'),
+		array('mimetype' => 'application/x-httpd-php')
 	),
 	/* expires config */
 	'htaccess_expires_default'     => (60*60*24*30),
@@ -159,22 +159,22 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['html5boilerplate'] = array
 	/* deflate config */
 	'htaccess_deflate_files'       => array
 	(
-		array('extension' => 'text/html'),
-		array('extension' => 'text/css'),
-		array('extension' => 'text/plain'),
-		array('extension' => 'text/xml'),
-		array('extension' => 'text/x-component'),
-		array('extension' => 'application/javascript'),
-		array('extension' => 'application/json'),
-		array('extension' => 'application/xml'),
-		array('extension' => 'application/xhtml+xml'),
-		array('extension' => 'application/rss+xml'),
-		array('extension' => 'application/atom+xml'),
-		array('extension' => 'application/vnd.ms-fontobject'),
-		array('extension' => 'image/svg+xml'),
-		array('extension' => 'image/x-icon'),
-		array('extension' => 'application/x-font-ttf'),
-		array('extension' => 'font/opentype')
+		array('mimetype' => 'text/html'),
+		array('mimetype' => 'text/css'),
+		array('mimetype' => 'text/plain'),
+		array('mimetype' => 'text/xml'),
+		array('mimetype' => 'text/x-component'),
+		array('mimetype' => 'application/javascript'),
+		array('mimetype' => 'application/json'),
+		array('mimetype' => 'application/xml'),
+		array('mimetype' => 'application/xhtml+xml'),
+		array('mimetype' => 'application/rss+xml'),
+		array('mimetype' => 'application/atom+xml'),
+		array('mimetype' => 'application/vnd.ms-fontobject'),
+		array('mimetype' => 'image/svg+xml'),
+		array('mimetype' => 'image/x-icon'),
+		array('mimetype' => 'application/x-font-ttf'),
+		array('mimetype' => 'font/opentype')
 	),
 	/* expires config */
 	'htaccess_expires_default'     => (60*60*24*30),

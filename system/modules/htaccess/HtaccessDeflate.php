@@ -51,18 +51,18 @@ class HtaccessDeflate implements HtaccessModule
 	 */
 	public function generateModule($strSubmoduleCode)
 	{
-		$arrExtensions = array();
+		$arrMimeTypes = array();
 		foreach (deserialize($GLOBALS['TL_CONFIG']['htaccess_deflate_files'], true) as $arrFile)
 		{
-			if (!empty($arrFile['extension']))
+			if (!empty($arrFile['mimetype']))
 			{
-				$arrExtensions[] = $arrFile['extension'];
+				$arrMimeTypes[] = $arrFile['mimetype'];
 			}
 		}
 
 		$objTemplate = new BackendTemplate('htaccess_deflate');
 		$objTemplate->submodules = $strSubmoduleCode;
-		$objTemplate->extensions = $arrExtensions;
+		$objTemplate->mimetypes  = $arrMimeTypes;
 		return $objTemplate->parse();
 	}
 }

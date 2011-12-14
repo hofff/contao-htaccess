@@ -42,14 +42,78 @@
  * @author     Tristan Lins <info@infinitysoft.de>
  * @package    htaccess Generator
  */
-class HtaccessRunonce extends System
+class HtaccessRunonce extends File
 {
+	/**
+	 * @var string
+	 */
+	protected $extension;
+
+
+	/**
+	 * Create the runonce controller.
+	 */
+	public function __construct()
+	{
+		// overwrite File::__construct
+		$this->import('HtaccessConfig', 'Config', true);
+	}
+
+
+	/**
+	 * Magic method
+	 */
+	public function __get($strKey)
+	{
+		switch ($strKey)
+		{
+			case 'extension':
+				return $this->extension;
+		}
+
+		return '';
+	}
+
+	/**
+	 * Run the runonce controller
+	 */
 	public function run()
 	{
+		$this->loadLanguageFile('tl_htaccess');
+
+		// add default charset if not exists
 		if (!isset($GLOBALS['TL_CONFIG']['htaccess_default_charset']))
 		{
-			$objConfig = HtaccessConfig::getInstance();
-			$objConfig->add("\$GLOBALS['TL_CONFIG']['htaccess_default_charset']", 'utf-8');
+			$this->Config->add("\$GLOBALS['TL_CONFIG']['htaccess_default_charset']", 'utf-8');
+		}
+
+		// rewrite deflate array key extension to key mimetype
+		if (isset($GLOBALS['TL_CONFIG']['htaccess_deflate_files']))
+		{
+			$arrFiles = deserialize($GLOBALS['TL_CONFIG']['htaccess_deflate_files'], true);
+			$arrTemp = array();
+			foreach ($arrFiles as $arrFile)
+			{
+				if (isset($arrFile['extension']))
+				{
+					$this->extension = preg_replace('#[^\w]+#', '', $arrFile['extension']);
+					$arrMime = $this->getMimeInfo();
+
+					if ($arrMime[0] != 'application/octet-stream')
+					{
+						$arrTemp[] = array('mimetype' => $arrMime[0]);
+					}
+					else
+					{
+						$_SESSION['TL_ERROR'][] = sprintf($GLOBALS['TL_LANG']['tl_htaccess']['unknownType'], $arrFile['extension']);
+					}
+				}
+				else if (isset($arrFile['mimetype']))
+				{
+					$arrTemp[] = $arrFile;
+				}
+			}
+			$this->Config->add("\$GLOBALS['TL_CONFIG']['htaccess_deflate_files']", serialize($arrTemp));
 		}
 	}
 }

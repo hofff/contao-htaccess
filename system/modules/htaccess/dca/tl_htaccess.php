@@ -206,9 +206,9 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			(
 				'columnFields' => array
 				(
-					'extension' => array
+					'mimetype' => array
 					(
-						'label'     => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_deflate_file_extension'],
+						'label'     => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_deflate_file_mimetype'],
 						'exclude'   => true,
 						'inputType' => 'text',
 						'eval'      => array('style' => 'width:150px', 'mandatory'=>true)

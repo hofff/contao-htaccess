@@ -54,6 +54,7 @@ $GLOBALS['TL_LANG']['tl_htaccess']['loadPrevious']             = 'Version vom <s
  */
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_base_legend'] = 'Grundeinstellungen';
 $GLOBALS['TL_LANG']['tl_htaccess']['updateHtaccess']       = 'Die .htaccess Datei wurde neu erstellt.';
+$GLOBALS['TL_LANG']['tl_htaccess']['unknownType']          = 'Der MIME-Type für die Dateiendung <strong>.%s</strong> ist unbekannt, die Dateiendung wurde aus der .htaccess deflate Liste entfernt.';
 
 /**
  * base
@@ -92,8 +93,8 @@ $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_mime_type_encoding']  = array('MIME
  * deflate module
  */
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_deflate_legend']         = 'Deflate Modul';
-$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_deflate_files']          = array('Dateien', 'Definieren Sie hier, welche Dateien durch mod_deflate automatisch komprimiert werden sollen. Regexp Syntax ist erlaubt.');
-$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_deflate_file_extension'] = array('Erweiterung');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_deflate_files']          = array('Dateien', 'Definieren Sie hier, welche Dateien durch mod_deflate automatisch komprimiert werden sollen.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_deflate_file_mimetype']  = array('MIME-Type');
 
 /**
  * headers module

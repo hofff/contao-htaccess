@@ -10,26 +10,26 @@
 		</IfModule>
 	</IfModule>
 
-	<?php
-	if (count($this->extensions)):
+<?php
+if (count($this->mimetypes)):
 	?><IfModule filter_module>
-		FilterDeclare   COMPRESS
-		<?php foreach ($this->extensions as $strExtension): ?>
-		FilterProvider  COMPRESS  DEFLATE resp=Content-Type $<?php echo $strExtension; ?>
+	FilterDeclare   COMPRESS
+	<?php foreach ($this->mimetypes as $strMimeType): ?>
+	FilterProvider  COMPRESS  DEFLATE resp=Content-Type $<?php echo $strMimeType; ?>
 
-		<?php endforeach; ?>
-		FilterChain     COMPRESS
-		FilterProtocol  COMPRESS  DEFLATE change=yes;byteranges=no
-	</IfModule>
+	<?php endforeach; ?>
+	FilterChain     COMPRESS
+	FilterProtocol  COMPRESS  DEFLATE change=yes;byteranges=no
+</IfModule>
 
 	<IfModule !mod_filter.c>
 		# Legacy versions of Apache
-		<?php foreach ($this->extensions as $strExtension): ?>
-		AddOutputFilterByType DEFLATE <?php echo $strExtension; ?>
+		<?php foreach ($this->mimetypes as $strMimeType): ?>
+	AddOutputFilterByType DEFLATE <?php echo $strMimeType; ?>
 
-		<?php endforeach; ?>
+	<?php endforeach; ?>
 	</IfModule><?php
-	endif;
-	?>
+endif;
+?>
 
 </IfModule>
