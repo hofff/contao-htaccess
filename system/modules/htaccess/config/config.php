@@ -199,6 +199,8 @@ if (!function_exists('recalc_time_to_alternative'))
  */
 $GLOBALS['TL_HTACCESS_DEFAULTS']['contao'] = array
 (
+	/* base config */
+	'htaccess_default_charset'     => 'utf-8',
 	/* etag config */
 	'htaccess_etag_disable'        => true,
 	/* mime config */
@@ -250,6 +252,8 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['contao'] = array
  */
 $GLOBALS['TL_HTACCESS_DEFAULTS']['html5boilerplate'] = array
 (
+	/* base config */
+	'htaccess_default_charset'     => 'utf-8',
 	/* etag config */
 	'htaccess_etag_disable'        => true,
 	/* mime config */

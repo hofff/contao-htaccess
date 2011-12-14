@@ -13,6 +13,16 @@
 	Deny from all
 </FilesMatch>
 
+##
+# Set default charset
+##
+
+# Use <?php echo $GLOBALS['TL_CONFIG']['htaccess_default_charset']; ?> encoding for anything served text/plain or text/html
+AddDefaultCharset <?php echo $GLOBALS['TL_CONFIG']['htaccess_default_charset']; ?>
+
+# Force <?php echo $GLOBALS['TL_CONFIG']['htaccess_default_charset']; ?> for a number of file formats
+AddCharset <?php echo $GLOBALS['TL_CONFIG']['htaccess_default_charset']; ?> .html .css .js .xml .json .rss .atom
+
 <?php echo $this->modules; ?>
 
 # Block access to "hidden" directories whose names begin with a period. This

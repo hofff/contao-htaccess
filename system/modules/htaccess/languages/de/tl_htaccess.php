@@ -56,6 +56,11 @@ $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_base_legend'] = 'Grundeinstellungen
 $GLOBALS['TL_LANG']['tl_htaccess']['updateHtaccess']       = 'Die .htaccess Datei wurde neu erstellt.';
 
 /**
+ * base
+ */
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_default_charset'] = array('Standard Zeichensatz', 'Wählen Sie hier den Standardzeichensatz, der für die Verbindung und Dateien verwendet werden soll.');
+
+/**
  * etag module
  */
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_etag_legend']  = 'ETag Modul';

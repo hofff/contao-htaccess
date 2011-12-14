@@ -60,6 +60,7 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 		'default' => array
 		(
 			'htaccess_settings' => array(':hide', 'htaccess_load_settings', 'htaccess_load_previous'),
+			'htaccess_base'     => array('htaccess_default_charset'),
 			'htaccess_etag'     => array('htaccess_etag_disable'),
 			'htaccess_mime'     => array('htaccess_mime_types'),
 			'htaccess_deflate'  => array('htaccess_deflate_files'),
@@ -90,12 +91,15 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'save_callback'           => array(array('tl_htaccess', 'loadPrevious')),
 			'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50')
 		),
-		'htaccess_template'           => array
+
+		/* base */
+		'htaccess_default_charset'    => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_template'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_default_charset'],
 			'inputType'               => 'select',
-			'options'                 => array_map(create_function('$s', 'return substr($s, 14);'), $this->getTemplateGroup('htaccess_base_')),
-			'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50')
+			'options'                 => array('utf-8', 'latin-1', 'iso-8859-1', 'iso-8859-15'),
+			'eval'                    => array('tl_class'=>'w50')
+		),
 		),
 		'htaccess_etag_disable'       => array
 		(
