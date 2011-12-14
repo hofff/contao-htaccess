@@ -241,6 +241,8 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['contao'] = array
 	'htaccess_rewrite_gzip'        => false,
 	'htaccess_rewrite_suffix'      => 'html',
 	/* h5bp settings */
+	'htaccess_h5bp_disable_multiview'     => false,
+	'htaccess_h5bp_disable_indexes'       => false,
 	'htaccess_h5bp_ie_x_ua_compatible'    => false,
 	'htaccess_h5bp_cross_domain_ajax'     => false,
 	'htaccess_h5bp_concatenation_include' => false,
@@ -341,6 +343,8 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['html5boilerplate'] = array
 	'htaccess_rewrite_gzip'        => false,
 	'htaccess_rewrite_suffix'      => 'html',
 	/* h5bp settings */
+	'htaccess_h5bp_disable_multiview'     => true,
+	'htaccess_h5bp_disable_indexes'       => true,
 	'htaccess_h5bp_ie_x_ua_compatible'    => false,
 	'htaccess_h5bp_cross_domain_ajax'     => false,
 	'htaccess_h5bp_concatenation_include' => false,
