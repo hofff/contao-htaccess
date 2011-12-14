@@ -113,6 +113,8 @@ $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_suffix']      = array('Cont
  * html5boilderplate settings
  */
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_legend']                = 'html5boilderplate Einstellungen';
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_disable_multiview']     = array('Apache MultiView deaktivieren', 'URLs wie /index.php/blog werden deaktiviert. Apache wirft einen 404 Fehler, wenn der Pfad nicht als Verzeichnis/Datei existiert.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_disable_indexes']       = array('Apache Indexes deaktivieren', 'Apache listet den Inhalt von Verzeichnissen ohne eigenen Index nicht mehr auf.');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_ie_x_ua_compatible']    = array('Neueste IE Engine erzwingen', 'Erzwingt den IE die neueste Engine zu verwenden und den Kompatibilitätsmodus zu umgehen.');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_cross_domain_ajax']     = array('Cross-Domain AJAX Requests', 'Cross-Domain AJAX Requests erlauben.');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_concatenation_include'] = array('Includes in CSS/JS Dateien erlauben', 'Erlaubt <a href="https://github.com/h5bp/html5-boilerplate/blob/master/.htaccess#L111" target="_blank">Server-Side-Includes</a> in *.combined.css/js Dateien. In der *.combined.* Datei müssen Includes eingefügt werden, um so eine dynamisch vereinheitlichte Datei zu erhalten.');

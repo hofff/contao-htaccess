@@ -1,4 +1,30 @@
 
+<?php if ($this->disable_multiview): ?>
+# ----------------------------------------------------------------------
+# Prevent 404 errors for non-existing redirected folders
+# ----------------------------------------------------------------------
+
+# without -MultiViews, Apache will give a 404 for a rewrite if a folder of the same name does not exist
+#   e.g. /blog/hello : webmasterworld.com/apache/3808792.htm
+
+Options -MultiViews
+
+<?php endif; ?>
+
+<?php if ($this->disable_multiview): ?>
+# ----------------------------------------------------------------------
+# A little more security
+# ----------------------------------------------------------------------
+
+# "-Indexes" will have Apache block users from browsing folders without a default document
+# Usually you should leave this activated, because you shouldn't allow everybody to surf through
+# every folder on your server (which includes rather private places like CMS system folders).
+<IfModule mod_autoindex.c>
+	Options -Indexes
+</IfModule>
+
+<?php endif; ?>
+
 <?php if ($this->concatenation_include): ?>
 # ----------------------------------------------------------------------
 # html5boilderplate - Allow concatenation from within specific js and css files

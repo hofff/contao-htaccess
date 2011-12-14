@@ -67,7 +67,7 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'htaccess_expires'  => array('htaccess_expires_default', 'htaccess_expires'),
 			'htaccess_custom'   => array(':hide', 'htaccess_custom'),
 			'htaccess_rewrite'  => array('htaccess_rewrite_rules', 'htaccess_rewrite_prepend_www', 'htaccess_rewrite_remove_www', 'htaccess_rewrite_dynamic_www', 'htaccess_rewrite_gzip', 'htaccess_rewrite_suffix'),
-			'htaccess_h5bp'     => array('htaccess_h5bp_ie_x_ua_compatible', 'htaccess_h5bp_cross_domain_ajax', 'htaccess_h5bp_concatenation_include', 'htaccess_h5bp_ie_flicker_fix')
+			'htaccess_h5bp'     => array('htaccess_h5bp_disable_multiview', 'htaccess_h5bp_disable_indexes', 'htaccess_h5bp_ie_x_ua_compatible', 'htaccess_h5bp_cross_domain_ajax', 'htaccess_h5bp_concatenation_include', 'htaccess_h5bp_ie_flicker_fix')
 		)
 	),
 
@@ -273,6 +273,16 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_suffix'],
 			'inputType'               => 'text',
 			'eval'                    => array('rgxp'=>'alpha', 'tl_class'=>'w50')
+		),
+		'htaccess_h5bp_disable_multiview' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_disable_multiview'],
+			'inputType'               => 'checkbox'
+		),
+		'htaccess_h5bp_disable_indexes' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_h5bp_disable_indexes'],
+			'inputType'               => 'checkbox'
 		),
 		'htaccess_h5bp_ie_x_ua_compatible' => array
 		(

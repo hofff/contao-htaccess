@@ -53,6 +53,8 @@ class HtaccessHtml5Boilerplate implements HtaccessModule, HtaccessSubmodule
 	{
 		$objTemplate = new BackendTemplate('htaccess_h5bp_features');
 		$objTemplate->submodules            = $strSubmoduleCode;
+		$objTemplate->disable_multiview     = $GLOBALS['TL_CONFIG']['htaccess_h5bp_disable_multiview'];
+		$objTemplate->disable_indexes       = $GLOBALS['TL_CONFIG']['htaccess_h5bp_disable_indexes'];
 		$objTemplate->concatenation_include = $GLOBALS['TL_CONFIG']['htaccess_h5bp_concatenation_include'];
 		$objTemplate->ie_flicker_fix        = $GLOBALS['TL_CONFIG']['htaccess_h5bp_ie_flicker_fix'];
 		return $objTemplate->parse();
