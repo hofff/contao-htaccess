@@ -58,6 +58,12 @@ class HtaccessAuth extends System implements HtaccessModule
 	{
 		$this->import('Encryption');
 
+		if (   $GLOBALS['TL_CONFIG']['htaccess_auth_mode'] != 'digest'
+			&& $GLOBALS['TL_CONFIG']['htaccess_auth_mode'] != 'basic')
+		{
+			$GLOBALS['TL_CONFIG']['htaccess_auth_mode'] = 'digest';
+		}
+
 		$strName = empty($GLOBALS['TL_CONFIG']['htaccess_auth_name']) ? $GLOBALS['TL_CONFIG']['websiteTitle'] : $GLOBALS['TL_CONFIG']['htaccess_auth_name'];
 
 		$arrUsers = array();
