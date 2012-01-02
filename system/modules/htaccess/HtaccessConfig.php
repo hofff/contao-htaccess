@@ -160,6 +160,12 @@ class HtaccessConfig extends Config
 			{
 				$arrChunks = array_map('trim', explode('=', $strLine, 2));
 				$this->arrHtaccessData[$arrChunks[0]] = $arrChunks[1];
+
+				// unescape values
+				if (preg_match('#^\$GLOBALS\[\'TL_CONFIG\'\]\[\'(htaccess_[^\']+)\'\]$#', $arrChunks[0], $m))
+				{
+					$GLOBALS['TL_CONFIG'][$m[1]] = $this->unescape($GLOBALS['TL_CONFIG'][$m[1]]);
+				}
 			}
 		}
 
@@ -242,4 +248,13 @@ class HtaccessConfig extends Config
 		}
 	}
 
+	public function escape($varValue)
+	{
+		return parent::escape(str_replace(array("\n", "\t"), array('\\n', '\\t'), $varValue));
+	}
+
+	public function unescape($varValue)
+	{
+		return str_replace(array('\\n', '\\t'), array("\n", "\t"), $varValue);
+	}
 }
