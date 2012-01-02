@@ -53,7 +53,7 @@ class HtaccessMime implements HtaccessModule
 	{
 		$objTemplate = new BackendTemplate('htaccess_mime');
 		$objTemplate->submodules = $strSubmoduleCode;
-		$objTemplate->mimetypes  = deserialize($GLOBALS['TL_CONFIG']['htaccess_mime_types']);
+		$objTemplate->mimetypes  = deserialize($GLOBALS['TL_CONFIG']['htaccess_mime_types'], true);
 		return $objTemplate->parse();
 	}
 }
