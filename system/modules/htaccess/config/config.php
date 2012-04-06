@@ -36,7 +36,9 @@
 /**
  * Include htaccess config file.
  */
-include(TL_ROOT . '/system/config/htaccess.php');
+if (file_exists(TL_ROOT . '/system/config/htaccess.php')) {
+	include(TL_ROOT . '/system/config/htaccess.php');
+}
 
 
 /**
