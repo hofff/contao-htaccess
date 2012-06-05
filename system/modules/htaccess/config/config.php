@@ -106,9 +106,9 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['contao'] = array
 		array('mimetype' => 'image/x-icon',             'mode' => 'A', 'time' => (60*60*24*30)),
 	),
 	/* custom config */
-	'htaccess_custom'              => '',
+	// 'htaccess_custom'              => '',
 	/* rewrite config */
-	'htaccess_rewrite_rules'       => '',
+	// 'htaccess_rewrite_rules'       => '',
 	'htaccess_rewrite_prepend_www' => false,
 	'htaccess_rewrite_remove_www'  => false,
 	'htaccess_rewrite_gzip'        => false,
@@ -208,9 +208,9 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['html5boilerplate'] = array
 		array('mimetype' => 'application/javascript',        'mode' => 'A', 'time' => (60*60*24*30*12)),
 	),
 	/* custom config */
-	'htaccess_custom'              => '',
+	// 'htaccess_custom'              => '',
 	/* rewrite config */
-	'htaccess_rewrite_rules'       => '',
+	// 'htaccess_rewrite_rules'       => '',
 	'htaccess_rewrite_prepend_www' => false,
 	'htaccess_rewrite_remove_www'  => false,
 	'htaccess_rewrite_gzip'        => false,
