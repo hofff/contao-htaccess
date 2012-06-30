@@ -589,7 +589,7 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['html5boilerplate'] = array
 /**
  * HTML5 Boilerplate developer configuration
  */
-$GLOBALS['TL_HTACCESS_DEFAULTS']['html5boilerplate'] = array
+$GLOBALS['TL_HTACCESS_DEFAULTS']['html5boilerplate development'] = array
 (
 	/* base config */
 	'htaccess_default_charset'            => 'utf-8',
