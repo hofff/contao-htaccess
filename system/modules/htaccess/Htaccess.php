@@ -116,4 +116,16 @@ class Htaccess extends System
 			$_SESSION['TL_INFO'][] = $GLOBALS['TL_LANG']['tl_htaccess']['updateHtaccess'];
 		}
 	}
+
+	public function updatePage($dc)
+	{
+		if ($dc->activeRecord->type == 'root' && (
+				$GLOBALS['TL_CONFIG']['htaccess_rewrite_prepend_www'] ||
+				$GLOBALS['TL_CONFIG']['htaccess_rewrite_remove_www'] ||
+				$GLOBALS['TL_CONFIG']['htaccess_rewrite_dynamic_www'] ||
+				$GLOBALS['TL_CONFIG']['htaccess_rewrite_favicon']
+		)) {
+			$this->update();
+		}
+	}
 }
