@@ -60,7 +60,9 @@ class HtaccessRewriteFavicon implements HtaccessSubmodule
 					->execute('root', '');
 
 				while ($objPage->next()) {
-					$arrFavicons[$objPage->dns] = $objPage->faviconPath;
+					if (file_exists(TL_ROOT . '/' . $objPage->faviconPath)) {
+						$arrFavicons[$objPage->dns] = $objPage->faviconPath;
+					}
 				}
 			}
 			else if (in_array('myfavicon', Config::getInstance()->getActiveModules())) {
