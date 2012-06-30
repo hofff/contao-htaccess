@@ -34,6 +34,16 @@
 
 
 /**
+ * Little hack to workaround protected constructor of MyFavicon class.
+ */
+if (in_array('myfavicon', Config::getInstance()->getActiveModules())) {
+	class HtaccessRewriteFaviconBase extends MyFavicon {}
+}
+else {
+	class HtaccessRewriteFaviconBase {}
+}
+
+/**
  * Class HtaccessRewriteFavicon
  *
  * Favicon htaccess configuration module.
@@ -42,8 +52,13 @@
  * @author     Tristan Lins <info@infinitysoft.de>
  * @package    htaccess Generator
  */
-class HtaccessRewriteFavicon implements HtaccessSubmodule
+class HtaccessRewriteFavicon extends HtaccessRewriteFaviconBase implements HtaccessSubmodule
 {
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
 	/**
 	 * Generate this sub module code.
 	 *
@@ -66,7 +81,25 @@ class HtaccessRewriteFavicon implements HtaccessSubmodule
 				}
 			}
 			else if (in_array('myfavicon', Config::getInstance()->getActiveModules())) {
-				throw new Exception('TODO!');
+				$objPage = Database::getInstance()
+					->prepare('SELECT * FROM tl_page WHERE type=? AND addFavicon=? AND favicon!=?')
+					->execute('root', 1, '');
+
+				while ($objPage->next()) {
+					if (file_exists(TL_ROOT . '/' . $objPage->favicon)) {
+						$this->createIcon($objPage->favicon, ($objPage->rootFavicon ? $objPage->alias : ''));
+
+						foreach ($GLOBALS['TL_HEAD'] as $k=>$v) {
+							if (preg_match('#rel="icon" type="image/vnd.microsoft.icon" href="(.*)"#', $v, $m)) {
+								$arrFavicons[$objPage->dns] = $m[1];
+								unset($GLOBALS['TL_HEAD'][$k]);
+							}
+							else if (preg_match('#rel="(apple-touch-icon|(shortcut )?icon)"#', $v)) {
+								unset($GLOBALS['TL_HEAD'][$k]);
+							}
+						}
+					}
+				}
 			}
 
 			if (count($arrFavicons)) {
@@ -82,7 +115,7 @@ class HtaccessRewriteFavicon implements HtaccessSubmodule
 
 	/**
 	 * Sort favicons array by key.
-	 * 
+	 *
 	 * @param $a
 	 * @param $b
 	 * @return int
