@@ -219,10 +219,10 @@ $GLOBALS['TL_HTACCESS_DEFAULTS']['contao'] = array
 		      'time'     => (60 * 60 * 24 * 30)),
 		array('mimetype' => 'text/css',
 		      'mode'     => 'A',
-		      'time'     => (60 * 60 * 24 * 30 * 365)),
+		      'time'     => (60 * 60 * 24 * 30 * 12)),
 		array('mimetype' => 'application/javascript',
 		      'mode'     => 'A',
-		      'time'     => (60 * 60 * 24 * 30 * 365)),
+		      'time'     => (60 * 60 * 24 * 30 * 12)),
 	),
 	/* custom config */
 	// 'htaccess_custom'              => '',
