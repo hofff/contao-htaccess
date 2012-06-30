@@ -67,6 +67,8 @@ $GLOBALS['TL_HTACCESS']['h5bp']    = 'HtaccessHtml5Boilerplate';
 $GLOBALS['TL_HTACCESS_SUBMODULES']['headers']['etag'] = 'HtaccessEtag';
 $GLOBALS['TL_HTACCESS_SUBMODULES']['headers']['h5bp'] = 'HtaccessHtml5Boilerplate';
 
+$GLOBALS['TL_HTACCESS_SUBMODULES']['rewrite']['favicon'] = 'HtaccessRewriteFavicon';
+
 
 /**
  * Contao default configuration

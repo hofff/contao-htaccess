@@ -127,6 +127,7 @@ $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_remove_www']  = array('www.
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_dynamic_www'] = array('www. dynamisch hinzufügen oder entfernen', 'Dynamische Rewrite Regel für beliebige Domains erzeugen, so dass beim Aufruf der Domain ohne www. zur Domain mit www. umgeleitet wird bzw. umgekehrt.', 'prepend'=>'hinzufügen', 'remove'=>'entfernen');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_gzip']        = array('.gz Rewrite', 'Rewrite Regel für vorkomprimierte .gz Dateien erzeugen. Leitet transparent Aufrufe von .js und .css Dateien auf vorkomprimierte .js.gz bzw. .css.gz Dateien.');
 $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_suffix']      = array('Contao Rewrite Suffix', 'Definieren Sie hier den Dateisuffix (z.B. html) für die der Requests auf Contao umgeleitet werden soll. Kann auch leer gelassen werden, um alle dynamischen Requests umzuleiten.');
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_favicon']     = array('favicon.ico Umschreiben', 'Schreibt die favicon.ico Datei aus den Startpunkten um, damit auch ältere und fehlerhafte Browser unterstützt werden. Unterstützt die Favicon und myfavicon Erweiterung.');
 
 /**
  * html5boilderplate settings
