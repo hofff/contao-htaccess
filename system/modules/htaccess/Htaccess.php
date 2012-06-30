@@ -44,6 +44,23 @@
  */
 class Htaccess extends System
 {
+	/**
+	 * @var Htaccess
+	 */
+	protected static $objInstance = null;
+
+	/**
+	 * @static
+	 * @return Htaccess
+	 */
+	public static function getInstance()
+	{
+		if (self::$objInstance === null) {
+			self::$objInstance = new Htaccess();
+		}
+		return self::$objInstance;
+	}
+
 	public function update()
 	{
 		$strModules = '';
