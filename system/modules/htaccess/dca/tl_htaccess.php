@@ -241,7 +241,6 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 							  60 => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 1),  //  1 minute
 							   0 => $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][7]               // now
 			),
-			'eval'                    => array('submitOnChange'=>true)
 		),
 		'htaccess_expires'        => array
 		(
