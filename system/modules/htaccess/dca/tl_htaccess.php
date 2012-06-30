@@ -224,23 +224,25 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'inputType'               => 'select',
 			'options'   => array
 			(
-				(60*60*24*30*12) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][1], 1),  //  1 year
-				 (60*60*24*30*6) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][2], 6),  //  6 months
-				 (60*60*24*30*3) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][2], 3),  //  3 months
-				   (60*60*24*30) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][2], 1),  //  1 month
-				   (60*60*24*15) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][3], 2), //  2 weeks
-				  (60*60*24*7.5) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][3], 1),  //  1 week
-					(60*60*24*3) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][4], 3),  //  3 days
-					  (60*60*24) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][4], 1),  //  1 day
-					  (60*60*12) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][5], 12), // 12 hours
-					   (60*60*6) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][5], 6),  //  6 hours
-						 (60*60) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][5], 1),  //  1 hour
-						 (60*30) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 30), // 30 minutes
-						 (60*15) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 15), // 15 minutes
-						  (60*5) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 5),  //  5 minutes
-							  60 => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 1),  //  1 minute
-							   0 => $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][7]               // now
+				'T' . (60*60*24*30*12) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][1], 1),  //  1 year
+				'T' .  (60*60*24*30*6) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][2], 6),  //  6 months
+				'T' .  (60*60*24*30*3) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][2], 3),  //  3 months
+				'T' .    (60*60*24*30) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][2], 1),  //  1 month
+				'T' .    (60*60*24*15) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][3], 2),  //  2 weeks
+				'T' .   (60*60*24*7.5) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][3], 1),  //  1 week
+				'T' . 	(60*60*24*3) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][4], 3),  //  3 days
+				'T' . 	  (60*60*24) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][4], 1),  //  1 day
+				'T' . 	  (60*60*12) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][5], 12), // 12 hours
+				'T' . 	   (60*60*6) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][5], 6),  //  6 hours
+				'T' . 		 (60*60) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][5], 1),  //  1 hour
+				'T' . 		 (60*30) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 30), // 30 minutes
+				'T' . 		 (60*15) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 15), // 15 minutes
+				'T' . 		  (60*5) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 5),  //  5 minutes
+				'T' . 			  60 => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 1),  //  1 minute
+				'T' . 			   0 => $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][7]               // now
 			),
+			'load_callback' => array(array('tl_htaccess', 'loadTime')),
+			'save_callback' => array(array('tl_htaccess', 'saveTime'))
 		),
 		'htaccess_expires'        => array
 		(
@@ -272,24 +274,26 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 						'inputType' => 'select',
 						'options'   => array
 						(
-							(60*60*24*30*12) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][1], 1),  //  1 year
-							 (60*60*24*30*6) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][2], 6),  //  6 months
-							 (60*60*24*30*3) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][2], 3),  //  3 months
-							   (60*60*24*30) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][2], 1),  //  1 month
-							   (60*60*24*15) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][3], 2), //  2 weeks
-							  (60*60*24*7.5) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][3], 1),  //  1 week
-								(60*60*24*3) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][4], 3),  //  3 days
-								  (60*60*24) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][4], 1),  //  1 day
-								  (60*60*12) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][5], 12), // 12 hours
-								   (60*60*6) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][5], 6),  //  6 hours
-									 (60*60) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][5], 1),  //  1 hour
-									 (60*30) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 30), // 30 minutes
-									 (60*15) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 15), // 15 minutes
-									  (60*5) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 5),  //  5 minutes
-										  60 => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 1),  //  1 minute
-										   0 => $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][7]               // now
+							'T' . (60*60*24*30*12) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][1], 1),  //  1 year
+							'T' .  (60*60*24*30*6) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][2], 6),  //  6 months
+							'T' .  (60*60*24*30*3) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][2], 3),  //  3 months
+							'T' .    (60*60*24*30) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][2], 1),  //  1 month
+							'T' .    (60*60*24*15) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][3], 2), //  2 weeks
+							'T' .   (60*60*24*7.5) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][3], 1),  //  1 week
+							'T' . 	(60*60*24*3) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][4], 3),  //  3 days
+							'T' . 	  (60*60*24) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][4], 1),  //  1 day
+							'T' . 	  (60*60*12) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][5], 12), // 12 hours
+							'T' . 	   (60*60*6) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][5], 6),  //  6 hours
+							'T' . 		 (60*60) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][5], 1),  //  1 hour
+							'T' . 		 (60*30) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 30), // 30 minutes
+							'T' . 		 (60*15) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 15), // 15 minutes
+							'T' . 		  (60*5) => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 5),  //  5 minutes
+							'T' . 			  60 => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 1),  //  1 minute
+							'T' . 			   0 => $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][7]               // now
 						),
-						'eval'      => array('style' => 'width:100px', 'mandatory'=>true)
+						'eval'      => array('style' => 'width:100px', 'mandatory'=>true),
+						'load_callback' => array(array('tl_htaccess', 'loadTime')),
+						'save_callback' => array(array('tl_htaccess', 'saveTime'))
 					)
 				)
 			)
@@ -470,5 +474,15 @@ class tl_htaccess extends Backend
 			$_SESSION['TL_INFO'][] = sprintf($GLOBALS['TL_LANG']['tl_htaccess']['loadPrevious'], $this->parseDate('d.m.Y - H:i:s', $intPrevious));
 			$this->reload();
 		}
+	}
+
+	public function loadTime($varValue)
+	{
+		return 'T' . $varValue;
+	}
+
+	public function saveTime($varValue)
+	{
+		return substr($varValue, 1);
 	}
 }
