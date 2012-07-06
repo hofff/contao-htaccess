@@ -56,7 +56,9 @@ class HtaccessAuth extends System implements HtaccessModule
 	 */
 	public function generateModule($strSubmoduleCode)
 	{
+		$strHtusers = '.htusers';
 
+		$objFile = new File($strHtusers);
 
 		if ($GLOBALS['TL_CONFIG']['htaccess_auth_enabled']) {
 			$this->import('Encryption');
@@ -80,11 +82,8 @@ class HtaccessAuth extends System implements HtaccessModule
 
 			$blnEnabled = $GLOBALS['TL_CONFIG']['htaccess_auth_enabled'] && count($arrUsers);
 
-			$strHtusers = '.htusers';
-
 			if ($blnEnabled)
 			{
-				$objFile = new File($strHtusers);
 				$objFile->truncate();
 
 				foreach ($arrUsers as $strUsername=>$strPassword)
@@ -101,6 +100,14 @@ class HtaccessAuth extends System implements HtaccessModule
 					}
 				}
 			}
+			else
+			{
+				$objFile->delete();
+			}
+		}
+		else
+		{
+			$objFile->delete();
 		}
 
 		$objTemplate = new BackendTemplate('htaccess_auth_' . $GLOBALS['TL_CONFIG']['htaccess_auth_mode']);
