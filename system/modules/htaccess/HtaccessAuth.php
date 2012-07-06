@@ -56,45 +56,49 @@ class HtaccessAuth extends System implements HtaccessModule
 	 */
 	public function generateModule($strSubmoduleCode)
 	{
-		$this->import('Encryption');
 
-		if (   $GLOBALS['TL_CONFIG']['htaccess_auth_mode'] != 'digest'
-			&& $GLOBALS['TL_CONFIG']['htaccess_auth_mode'] != 'basic')
-		{
-			$GLOBALS['TL_CONFIG']['htaccess_auth_mode'] = 'digest';
-		}
 
-		$strName = empty($GLOBALS['TL_CONFIG']['htaccess_auth_name']) ? $GLOBALS['TL_CONFIG']['websiteTitle'] : $GLOBALS['TL_CONFIG']['htaccess_auth_name'];
+		if ($GLOBALS['TL_CONFIG']['htaccess_auth_enabled']) {
+			$this->import('Encryption');
 
-		$arrUsers = array();
-		foreach (deserialize($GLOBALS['TL_CONFIG']['htaccess_auth_users'], true) as $arrUser)
-		{
-			if (!empty($arrUser['username']) && !empty($arrUser['password']))
+			if (   $GLOBALS['TL_CONFIG']['htaccess_auth_mode'] != 'digest'
+				&& $GLOBALS['TL_CONFIG']['htaccess_auth_mode'] != 'basic')
 			{
-				$arrUsers[$arrUser['username']] = $this->Encryption->decrypt($arrUser['password']);
+				$GLOBALS['TL_CONFIG']['htaccess_auth_mode'] = 'digest';
 			}
-		}
 
-		$blnEnabled = $GLOBALS['TL_CONFIG']['htaccess_auth_enabled'] && count($arrUsers);
+			$strName = empty($GLOBALS['TL_CONFIG']['htaccess_auth_name']) ? $GLOBALS['TL_CONFIG']['websiteTitle'] : $GLOBALS['TL_CONFIG']['htaccess_auth_name'];
 
-		$strHtusers = '.htusers';
-
-		if ($blnEnabled)
-		{
-			$objFile = new File($strHtusers);
-			$objFile->truncate();
-
-			foreach ($arrUsers as $strUsername=>$strPassword)
+			$arrUsers = array();
+			foreach (deserialize($GLOBALS['TL_CONFIG']['htaccess_auth_users'], true) as $arrUser)
 			{
-				switch ($GLOBALS['TL_CONFIG']['htaccess_auth_mode'])
+				if (!empty($arrUser['username']) && !empty($arrUser['password']))
 				{
-					case 'digest':
-						$objFile->append($strUsername . ':' . $strName . ':' . md5($strUsername . ':' . $strName . ':' . $strPassword));
-						break;
+					$arrUsers[$arrUser['username']] = $this->Encryption->decrypt($arrUser['password']);
+				}
+			}
 
-					case 'basic':
-						$objFile->append($strUsername . ':' . crypt($strPassword));
-						break;
+			$blnEnabled = $GLOBALS['TL_CONFIG']['htaccess_auth_enabled'] && count($arrUsers);
+
+			$strHtusers = '.htusers';
+
+			if ($blnEnabled)
+			{
+				$objFile = new File($strHtusers);
+				$objFile->truncate();
+
+				foreach ($arrUsers as $strUsername=>$strPassword)
+				{
+					switch ($GLOBALS['TL_CONFIG']['htaccess_auth_mode'])
+					{
+						case 'digest':
+							$objFile->append($strUsername . ':' . $strName . ':' . md5($strUsername . ':' . $strName . ':' . $strPassword));
+							break;
+
+						case 'basic':
+							$objFile->append($strUsername . ':' . crypt($strPassword));
+							break;
+					}
 				}
 			}
 		}
