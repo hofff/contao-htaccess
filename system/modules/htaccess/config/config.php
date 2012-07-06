@@ -71,6 +71,12 @@ $GLOBALS['TL_HTACCESS_SUBMODULES']['rewrite']['favicon'] = 'HtaccessRewriteFavic
 
 
 /**
+ * Allow .htusers on root level
+ */
+$GLOBALS['TL_CONFIG']['rootFiles'][] = '.htusers';
+
+
+/**
  * Contao default configuration
  */
 $GLOBALS['TL_HTACCESS_DEFAULTS']['contao'] = array
