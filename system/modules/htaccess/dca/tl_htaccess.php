@@ -112,7 +112,7 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_auth_enabled'],
 			'inputType'               => 'checkbox',
-			'eval'                    => array('tl_class'=>'m12', 'submitOnChange'=>true)
+			'eval'                    => array('tl_class'=>'m12', 'submitOnChange'=>true, 'disabled'=>in_array('mcrypt',get_loaded_extensions()) ? false : true)
 		),
 		'htaccess_auth_mode'          => array
 		(
