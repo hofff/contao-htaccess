@@ -103,11 +103,13 @@ class HtaccessAuth extends System implements HtaccessModule
 			else
 			{
 				$objFile->delete();
+				return '';
 			}
 		}
 		else
 		{
 			$objFile->delete();
+			return '';
 		}
 
 		$objTemplate = new BackendTemplate('htaccess_auth_' . $GLOBALS['TL_CONFIG']['htaccess_auth_mode']);
