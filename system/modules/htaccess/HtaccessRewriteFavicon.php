@@ -40,7 +40,9 @@ if (in_array('myfavicon', Config::getInstance()->getActiveModules())) {
 	class HtaccessRewriteFaviconBase extends MyFavicon {}
 }
 else {
-	class HtaccessRewriteFaviconBase {}
+	class HtaccessRewriteFaviconBase {
+	    public function __construct() {}
+	}
 }
 
 /**
