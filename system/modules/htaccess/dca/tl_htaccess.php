@@ -87,7 +87,7 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'inputType'               => 'select',
 			'options'                 => array_keys($GLOBALS['TL_HTACCESS_DEFAULTS']),
 			'save_callback'           => array(array('tl_htaccess', 'loadSettings')),
-			'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50')
+			'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50', 'chosen'=>true)
 		),
 		'htaccess_load_previous'      => array
 		(
@@ -95,7 +95,7 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'inputType'               => 'select',
 			'options_callback'        => array('tl_htaccess', 'previousOptions'),
 			'save_callback'           => array(array('tl_htaccess', 'loadPrevious')),
-			'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50')
+			'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50', 'chosen'=>true)
 		),
 
 		/* base */
@@ -104,7 +104,7 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'label'                   => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_default_charset'],
 			'inputType'               => 'select',
 			'options'                 => array('utf-8', 'latin-1', 'iso-8859-1', 'iso-8859-15'),
-			'eval'                    => array('tl_class'=>'w50')
+			'eval'                    => array('tl_class'=>'w50', 'chosen'=>true)
 		),
 
 		/* auth */
@@ -120,7 +120,7 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'inputType'               => 'select',
 			'options'                 => array('digest', 'basic'),
 			'reference'               => &$GLOBALS['TL_LANG']['tl_htaccess'],
-			'eval'                    => array('tl_class'=>'w50')
+			'eval'                    => array('tl_class'=>'w50', 'chosen'=>true)
 		),
 		'htaccess_auth_name'          => array
 		(
@@ -241,8 +241,9 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 				'T' . 			  60 => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 1),  //  1 minute
 				'T' . 			   0 => $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][7]               // now
 			),
+            'eval'          => array('chosen'=>true),
 			'load_callback' => array(array('tl_htaccess', 'loadTime')),
-			'save_callback' => array(array('tl_htaccess', 'saveTime'))
+			'save_callback' => array(array('tl_htaccess', 'saveTime')),
 		),
 		'htaccess_expires'        => array
 		(
@@ -265,7 +266,7 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 						'exclude'   => true,
 						'inputType' => 'select',
 						'options'   => array('A', 'M'),
-						'eval'      => array('style' => 'width:40px', 'mandatory'=>true)
+						'eval'      => array('style' => 'width:40px', 'mandatory'=>true, 'chosen'=>true)
 					),
 					'time' => array
 					(
@@ -291,7 +292,7 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 							'T' . 			  60 => sprintf($GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][6], 1),  //  1 minute
 							'T' . 			   0 => $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_expires_time'][7]               // now
 						),
-						'eval'      => array('style' => 'width:100px', 'mandatory'=>true),
+						'eval'      => array('style' => 'width:140px', 'mandatory'=>true, 'chosen'=>true),
 						'load_callback' => array(array('tl_htaccess', 'loadTime')),
 						'save_callback' => array(array('tl_htaccess', 'saveTime'))
 					)

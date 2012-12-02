@@ -36,7 +36,9 @@
 /**
  * Load the DC_File class.
  */
-require(TL_ROOT . '/system/drivers/DC_File.php');
+if (version_compare(VERSION, '3', '<')) {
+    require(TL_ROOT . '/system/drivers/DC_File.php');
+}
 
 /**
  * Class DC_File_Htaccess
