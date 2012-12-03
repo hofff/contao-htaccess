@@ -71,7 +71,7 @@ class HtaccessRunonce extends File
 				return $this->extension;
 		}
 
-		return '';
+		return parent::__get($strKey);
 	}
 
 	/**
