@@ -61,6 +61,11 @@ class Htaccess extends System
 		return self::$objInstance;
 	}
 
+	function __construct()
+	{
+		$this->import('HtaccessConfig', 'Config', true);
+	}
+
 	public function update()
 	{
 		$strModules = '';
