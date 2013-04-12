@@ -390,15 +390,6 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 
 class tl_htaccess extends Backend
 {
-	/**
-	 * @var Htaccess
-	 */
-	protected $Htaccess;
-
-	/**
-	 * @var Files
-	 */
-	protected $Files;
 
 	/**
 	 * @return void

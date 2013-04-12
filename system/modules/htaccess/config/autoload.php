@@ -24,6 +24,7 @@ ClassLoader::addClasses(array
 	'HtaccessRewrite'          => 'system/modules/htaccess/HtaccessRewrite.php',
 	'HtaccessCustom'           => 'system/modules/htaccess/HtaccessCustom.php',
 	'HtaccessModule'           => 'system/modules/htaccess/HtaccessModule.php',
+    'HtaccessSubmodule'        => 'system/modules/htaccess/HtaccessSubmodule.php',
 	'HtaccessDeflate'          => 'system/modules/htaccess/HtaccessDeflate.php',
 	'HtaccessHeaders'          => 'system/modules/htaccess/HtaccessHeaders.php',
 	'Htaccess'                 => 'system/modules/htaccess/Htaccess.php',

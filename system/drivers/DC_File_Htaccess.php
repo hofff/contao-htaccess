@@ -51,10 +51,6 @@ if (version_compare(VERSION, '3', '<')) {
  */
 class DC_File_Htaccess extends DC_File
 {
-	/**
-	 * @var HtaccessConfig
-	 */
-	protected $Config;
 	
 	/**
 	 * Create the data container.
