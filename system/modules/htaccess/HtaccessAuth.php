@@ -44,10 +44,6 @@
  */
 class HtaccessAuth extends System implements HtaccessModule
 {
-	/**
-	 * @var Encryption
-	 */
-	protected $Encryption;
 	
 	/**
 	 * Generate this module code.

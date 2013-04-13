@@ -45,11 +45,6 @@
 class HtaccessRewrite extends System implements HtaccessModule
 {
 	/**
-	 * @var Database
-	 */
-	protected $Database;
-
-	/**
 	 * Generate this module code.
 	 *
 	 * @return string
