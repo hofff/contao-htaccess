@@ -19,6 +19,12 @@
 	RewriteCond %{QUERY_STRING} (ftp|https?):|/etc/ [NC]
 	RewriteRule .* - [F,L]
 
+	<?php if($this->redirectToHTTPS): ?>
+	# Redirect HTTP to HTTPS
+	RewriteCond %{HTTPS} !=on
+	RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+	<?php endif; ?>
+
 	##
 	# Uncomment the following lines and replace "domain.com" with your domain
 	# name to redirect requests without "www" to the correct domain.
@@ -38,28 +44,32 @@
 	endforeach;
 	if ($this->dynamicWWW == 'prepend'):
 	?>
-
 	# rewrite "example.com -> www.example.com"
 	# Be aware that the following rule might not be a good idea if you
 	# use "real" subdomains for certain parts of your website.
 
-	<IfModule mod_rewrite.c>
-		RewriteCond %{HTTPS} !=on
-		RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
-		RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-	</IfModule>
+	RewriteCond %{HTTPS} !=on
+	RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
+	RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+	RewriteCond %{HTTPS} =on
+	RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
+	RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
 	<?php
 	endif;
 	if ($this->dynamicWWW == 'remove'):
 	?>
-
 	# Rewrite "www.example.com -> example.com"
 
-	<IfModule mod_rewrite.c>
-		RewriteCond %{HTTPS} !=on
-		RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-		RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
-	</IfModule>
+	RewriteCond %{HTTPS} !=on
+	RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+	RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+
+	RewriteCond %{HTTPS} =on
+	RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+	RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
 	<?php
 	endif;
 	?>
