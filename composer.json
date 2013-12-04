@@ -1,9 +1,9 @@
 {
-  "name": "bit3/htaccess",
+  "name": "bit3/contao-htaccess",
   "description": "Manage .htaccess files from the Backend",
   "keywords": ["contao"],
   "type": "contao-module",
-  "homepage": "https://github.com/bit3-4ward/htaccess",
+  "homepage": "https://github.com/bit3/contao-htaccess",
   "license": "LGPL-3.0+",
   "authors": [
     {
@@ -29,7 +29,7 @@
     "psi/redirect4ward": "Define page redirection rules."
   },
   "replace": {
-    "contao-legacy/htaccess": "*"
+    "contao-legacy/htaccess": "self.version"
   },
   "conflict": {
     "contao/core": "3.0.*"
