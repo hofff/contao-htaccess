@@ -75,6 +75,13 @@ $GLOBALS['TL_HTACCESS_SUBMODULES']['rewrite']['favicon'] = 'HtaccessRewriteFavic
  */
 $GLOBALS['TL_CONFIG']['rootFiles'][] = '.htusers';
 
+/**
+ * syncCto blacklist entries
+ */
+$GLOBALS['SYC_CONFIG']['file_blacklist'] = array_merge( (array) $GLOBALS['SYC_CONFIG']['file_blacklist'], array(
+    'system/config/htaccess*',
+    'TL_ROOT/.htusers',
+));
 
 /**
  * Contao default configuration
