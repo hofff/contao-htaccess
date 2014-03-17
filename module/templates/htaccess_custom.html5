@@ -1,0 +1,4 @@
+<?php echo $this->pre ?>
+<?php echo $this->content; ?>
+<?php echo $this->post ?>
+

@@ -1,0 +1,19 @@
+<IfModule mod_expires.c>
+	ExpiresActive On
+
+<?php echo $this->pre ?>
+
+	ExpiresDefault A<?php echo $this->default; ?>
+
+<?php
+	foreach ($this->expires as $arrExpire):
+		if (!empty($arrExpire['mimetype']) && !empty($arrExpire['mode']) && strlen($arrExpire['time'])):
+?>
+	ExpiresByType <?php echo $arrExpire['mimetype']; ?> <?php echo $arrExpire['mode']; ?><?php echo $arrExpire['time']; ?>
+<?php
+		endif;
+	endforeach;
+?>
+
+<?php echo $this->post ?>
+</IfModule>

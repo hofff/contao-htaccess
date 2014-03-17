@@ -1,1 +1,0 @@
-Header append Cache-Control "public"

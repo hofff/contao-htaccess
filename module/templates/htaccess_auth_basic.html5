@@ -1,0 +1,14 @@
+<?php if ($this->enabled): ?>
+
+<IfModule mod_auth_basic.c>
+<?php echo $this->pre ?>
+
+	AuthType Basic
+	AuthName "<?php echo $this->name; ?>"
+	AuthUserFile "<?php echo $this->htusers; ?>"
+	Require valid-user
+
+<?php echo $this->post; ?>
+</IfModule>
+
+<?php endif; ?>

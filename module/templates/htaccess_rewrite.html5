@@ -1,0 +1,277 @@
+<IfModule mod_rewrite.c>
+<?php
+	// Activate the module
+?>
+	RewriteEngine On
+
+<?php
+	// Set the RewriteBase
+?>
+	RewriteBase <?php echo $this->base; ?>
+
+<?php echo $this->pre; ?>
+
+<?php
+	// Contao usually does not pass absolute URLs via GET, therefore the
+	// following rules block all requests that try to pass a URL or the /etc/
+	// directory as parameter (malicious requests).
+?>
+	RewriteCond %{REQUEST_URI} (ftp|https?):|/etc/ [NC,OR]
+	RewriteCond %{QUERY_STRING} (ftp|https?):|/etc/ [NC]
+	RewriteRule .* - [F,L]
+
+<?php
+	// Block access to hidden files and directories.
+	// This includes directories used by version control systems such as Git and SVN.
+?>
+	RewriteCond %{SCRIPT_FILENAME} -d [OR]
+	RewriteCond %{SCRIPT_FILENAME} -f
+	RewriteRule "(^|/)\." - [F,L]
+
+<?php
+	foreach ($this->wwwRules as $domain):
+		if ($domain == 'www.*'):
+?>
+
+	RewriteCond %{HTTPS} !=on
+<?php
+			foreach ($this->domains as $otherDomain):
+				if ($domain != $otherDomain):
+?>
+	RewriteCond %{HTTP_HOST} !^<?php echo preg_quote($otherDomain); ?>$ [NC]
+<?php
+				endif;
+			endforeach;
+?>
+	RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
+	RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+	RewriteCond %{HTTPS} =on
+<?php
+			foreach ($this->domains as $otherDomain):
+				if ($domain != $otherDomain):
+?>
+	RewriteCond %{HTTP_HOST} !^<?php echo preg_quote($otherDomain); ?>$ [NC]
+<?php
+				endif;
+			endforeach;
+?>
+	RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
+	RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+<?php
+			continue;
+		elseif ($domain == '!www.*'):
+?>
+
+	RewriteCond %{HTTPS} !=on
+<?php
+			foreach ($this->domains as $otherDomain):
+				if ($domain != $otherDomain):
+?>
+	RewriteCond %{HTTP_HOST} !^<?php echo preg_quote($otherDomain); ?>$ [NC]
+<?php
+				endif;
+			endforeach;
+?>
+	RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+	RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+
+	RewriteCond %{HTTPS} =on
+<?php
+			foreach ($this->domains as $otherDomain):
+				if ($domain != $otherDomain):
+?>
+	RewriteCond %{HTTP_HOST} !^<?php echo preg_quote($otherDomain); ?>$ [NC]
+<?php
+				endif;
+			endforeach;
+?>
+	RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+	RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+<?php
+			continue;
+		endif;
+
+		preg_match('~^(www\.)?(.*)$~', $domain, $matches);
+
+		if ($matches[1]):
+?>
+
+	RewriteCond %{HTTPS} !=on
+<?php
+			foreach ($this->domains as $otherDomain):
+				if ($domain != $otherDomain):
+?>
+	RewriteCond %{HTTP_HOST} !^<?php echo preg_quote($otherDomain); ?>$ [NC]
+<?php
+				endif;
+			endforeach;
+?>
+	RewriteCond %{HTTP_HOST} ^<?php echo preg_quote($matches[2]); ?>$ [NC]
+	RewriteRule ^ http://<?php echo $domain; ?>%{REQUEST_URI} [R=301,L]
+
+	RewriteCond %{HTTPS} =on
+<?php
+			foreach ($this->domains as $otherDomain):
+				if ($domain != $otherDomain):
+?>
+	RewriteCond %{HTTP_HOST} !^<?php echo preg_quote($otherDomain); ?>$ [NC]
+<?php
+				endif;
+			endforeach;
+?>
+	RewriteCond %{HTTP_HOST} ^<?php echo preg_quote($matches[2]); ?>$ [NC]
+	RewriteRule ^ https://<?php echo $domain; ?>%{REQUEST_URI} [R=301,L]
+
+<?php
+		else:
+?>
+
+	RewriteCond %{HTTPS} !=on
+<?php
+			foreach ($this->domains as $otherDomain):
+				if ($domain != $otherDomain):
+?>
+	RewriteCond %{HTTP_HOST} !^<?php echo preg_quote($otherDomain); ?>$ [NC]
+<?php
+				endif;
+			endforeach;
+?>
+	RewriteCond %{HTTP_HOST} ^www\.<?php echo preg_quote($domain); ?>$ [NC]
+	RewriteRule ^ http://<?php echo $domain; ?>%{REQUEST_URI} [R=301,L]
+
+	RewriteCond %{HTTPS} =on
+<?php
+			foreach ($this->domains as $otherDomain):
+				if ($domain != $otherDomain):
+?>
+	RewriteCond %{HTTP_HOST} !^<?php echo preg_quote($otherDomain); ?>$ [NC]
+<?php
+				endif;
+			endforeach;
+?>
+	RewriteCond %{HTTP_HOST} ^www\.<?php echo preg_quote($domain); ?>$ [NC]
+	RewriteRule ^ https://<?php echo $domain; ?>%{REQUEST_URI} [R=301,L]
+
+<?php
+		endif;
+	endforeach;
+
+	if (count($this->httpsRules['enforce'])):
+?>
+
+	RewriteCond %{HTTPS} !=on
+<?php
+		foreach ($this->httpsRules['enforce'] as $domain):
+			if ($domain == 'www.*'):
+?>
+	RewriteCond %{HTTP_HOST} ^www\. [NC,OR]
+<?php
+			elseif ($domain == '!www.*'):
+?>
+	RewriteCond %{HTTP_HOST} !^www\. [NC,OR]
+<?php
+			else:
+?>
+	RewriteCond %{HTTP_HOST} ^<?php echo preg_quote($domain); ?>$ [NC,OR]
+<?php
+			endif;
+		endforeach;
+?>
+	RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+<?php
+	endif;
+	if (count($this->httpsRules['prevent'])):
+?>
+
+	RewriteCond %{HTTPS} =on
+<?php
+		foreach ($this->httpsRules['prevent'] as $domain):
+			if ($domain == 'www.*'):
+?>
+	RewriteCond %{HTTP_HOST} ^www\. [NC,OR]
+<?php
+			elseif ($domain == '!www.*'):
+?>
+	RewriteCond %{HTTP_HOST} !^www\. [NC,OR]
+<?php
+			else:
+?>
+	RewriteCond %{HTTP_HOST} ^<?php echo preg_quote($domain); ?>$ [NC,OR]
+<?php
+			endif;
+		endforeach;
+?>
+	RewriteRule ^ http://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+<?php
+	endif;
+?>
+
+<?php echo $this->rules; ?>
+
+
+<?php
+	if ($this->gzip):
+	// If you cannot use mod_deflate, uncomment the following lines to load a
+	// compressed .gz version of the bigger Contao JavaScript and CSS files.
+?>
+	AddEncoding gzip .gz
+	<FilesMatch "\.js\.gz$">
+		AddType "text/javascript" .gz
+	</FilesMatch>
+	<FilesMatch "\.css\.gz$">
+		AddType "text/css" .gz
+	</FilesMatch>
+	RewriteCond %{HTTP:Accept-encoding} gzip
+	RewriteCond %{REQUEST_FILENAME} \.(js|css)$
+	RewriteCond %{REQUEST_FILENAME}.gz -f
+	RewriteRule ^(.*)$ $1.gz [QSA,L]
+<?php
+	endif;
+?>
+
+<?php
+	if ($this->disabledFiles):
+?>
+	<FilesMatch "\.(<?php echo $this->disabledFiles; ?>)$">
+		RewriteEngine Off
+	</FilesMatch>
+<?php
+	endif;
+?>
+
+<?php echo $this->post; ?>
+
+<?php
+	// Do not rewrite requests for static files or folders such as style sheets,
+	// images, movies or text documents.
+
+	$suffix = $this->suffix;
+	$suffix = explode('|', $suffix);
+	$suffix = array_map('trim', $suffix);
+	$suffix = array_filter($suffix);
+	$suffix = array_map('preg_quote', $suffix);
+	$suffix = implode('|', $suffix);
+?>
+	RewriteCond %{REQUEST_FILENAME} !-f
+<?php
+	if (!$suffix):
+?>
+	RewriteCond %{REQUEST_FILENAME} !-d
+<?php
+	endif;
+?>
+	RewriteRule .*<?php if ($this->suffix): ?>\.(<?php echo $suffix; ?>)$<?php endif; ?> index.php [L]
+
+<?php
+	// The following rules are required if you want to pass the language as first
+	// URL parameter (added in Contao 2.11). The first rule rewrites the empty URL
+	// to the front end controller, the second one adds a missing trailing slash.
+?>
+	RewriteRule ^[a-z]{2}(\-[A-Z]{2})?/$ index.php [L]
+	RewriteRule ^([a-z]{2}(\-[A-Z]{2})?)$ $1/ [R=301,L]
+</IfModule>

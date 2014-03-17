@@ -1,0 +1,32 @@
+<IfModule mod_deflate.c>
+<?php echo $this->pre ?>
+
+<?php
+	// Force deflate for mangled headers developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping/
+?>
+	<IfModule mod_setenvif.c>
+		<IfModule mod_headers.c>
+			SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+			RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+		</IfModule>
+	</IfModule>
+
+<?php
+	if (count($this->mimetypes)):
+?>
+	<IfModule mod_filter.c>
+<?php
+		foreach ($this->mimetypes as $mimeType):
+?>
+		AddOutputFilterByType DEFLATE <?php echo $mimeType; ?>
+
+<?php
+		endforeach;
+?>
+	</IfModule>
+<?php
+	endif;
+?>
+
+<?php echo $this->post ?>
+</IfModule>
