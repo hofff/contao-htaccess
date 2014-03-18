@@ -13,17 +13,6 @@
 <?php
 if (count($this->mimetypes)):
 	?><IfModule filter_module>
-	FilterDeclare   COMPRESS
-	<?php foreach ($this->mimetypes as $strMimeType): ?>
-	FilterProvider  COMPRESS  DEFLATE resp=Content-Type $<?php echo $strMimeType; ?>
-
-	<?php endforeach; ?>
-	FilterChain     COMPRESS
-	FilterProtocol  COMPRESS  DEFLATE change=yes;byteranges=no
-</IfModule>
-
-	<IfModule !mod_filter.c>
-		# Legacy versions of Apache
 		<?php foreach ($this->mimetypes as $strMimeType): ?>
 	AddOutputFilterByType DEFLATE <?php echo $strMimeType; ?>
 
