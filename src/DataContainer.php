@@ -76,8 +76,8 @@ class DataContainer implements EventSubscriberInterface
 		// *** Hack around PHP require-cache ***
 		// PHP will not directly reload the new generated file, so we reload the client
 		// until PHP load the new file.
-		if (isset($_SESSION['HTACCESS_FORCE_RELOAD']) && $_SESSION['HTACCESS_FORCE_RELOAD']) {
-			if ($GLOBALS['TL_CONFIG']['htaccess_update_timestamp'] == $_SESSION['HTACCESS_FORCE_RELOAD']) {
+		if (isset($_SESSION['HTACCESS_FORCE_RELOAD']) && $_SESSION['HTACCESS_FORCE_RELOAD'] && isset($GLOBALS['TL_CONFIG']['htaccess_update_timestamp'])) {
+			if ($GLOBALS['TL_CONFIG']['htaccess_update_timestamp'] >= $_SESSION['HTACCESS_FORCE_RELOAD']) {
 				unset($_SESSION['HTACCESS_FORCE_RELOAD']);
 			}
 			else {
