@@ -77,6 +77,8 @@ class AuthGenerator implements EventSubscriberInterface
 							break;
 					}
 				}
+				
+				$htusersFile->close();
 			}
 			else {
 				$htusersFile->delete();
