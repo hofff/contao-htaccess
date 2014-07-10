@@ -67,7 +67,7 @@ class DataContainer implements EventSubscriberInterface
 	public function load(CreateDcGeneralEvent $event)
 	{
 		$serializer = new IdSerializer();
-		$serializer->setDataProviderName(TL_ROOT . '/system/config/htaccess.php');
+		$serializer->setDataProviderName('tl_htaccess');
 		$serializer->setId(1);
 
 		$input = $event->getDcGeneral()->getEnvironment()->getInputProvider();
