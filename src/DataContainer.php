@@ -53,9 +53,9 @@ class DataContainer implements EventSubscriberInterface
 	public static function getSubscribedEvents()
 	{
 		return array(
-			CreateDcGeneralEvent::NAME . '[tl_htaccess]'  => 'load',
-			PreEditModelEvent::NAME . '[tl_htaccess]' => 'prepare',
-			PostPersistModelEvent::NAME . '[tl_htaccess]' => 'update',
+			CreateDcGeneralEvent::NAME => 'load',
+			PreEditModelEvent::NAME => 'prepare',
+			PostPersistModelEvent::NAME => 'update',
 		);
 	}
 
@@ -66,6 +66,10 @@ class DataContainer implements EventSubscriberInterface
 
 	public function load(CreateDcGeneralEvent $event)
 	{
+		if('tl_htaccess' !== $event->getDcGeneral()->getEnvironment()->getDataDefinition()->getName()) {
+			return;
+		}
+
 		$serializer = new IdSerializer();
 		$serializer->setDataProviderName('tl_htaccess');
 		$serializer->setId(1);
@@ -76,6 +80,10 @@ class DataContainer implements EventSubscriberInterface
 
 	public function prepare(PreEditModelEvent $event)
 	{
+		if('tl_htaccess' !== $event->getModel()->getProviderName()) {
+			return;
+		}
+
 		// *** Hack around PHP require-cache ***
 		// PHP will not directly reload the new generated file, so we reload the client
 		// until PHP load the new file.
@@ -95,8 +103,12 @@ class DataContainer implements EventSubscriberInterface
 	/**
 	 * @return void
 	 */
-	public function update()
+	public function update(PostPersistModelEvent $event)
 	{
+		if('tl_htaccess' !== $event->getModel()->getProviderName()) {
+			return;
+		}
+
 		$htaccess = Htaccess::getInstance();
 		$htaccess->update();
 
