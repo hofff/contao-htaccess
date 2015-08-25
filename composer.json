@@ -1,53 +1,55 @@
 {
-	"name": "hofff/contao-htaccess",
-	"description": "Backend integrated htaccess editor for Contao Open Source CMS",
-	"keywords": ["contao", "htaccess"],
-	"type": "contao-module",
-	"homepage": "https://github.com/hofff/contao-htaccess",
-	"license": "LGPL-3.0+",
-	"authors": [
-		{
-			"name": "Tristan Lins",
-			"email": "tristan.lins@bit3.de",
-			"homepage": "http://bit3.de",
-			"role": "Developer"
+	"name" : "hofff/contao-htaccess",
+	"description" : "Backend integrated htaccess editor for Contao Open Source CMS",
+	"keywords" : [
+		"contao",
+		"htaccess"
+	],
+	"type" : "contao-module",
+	"homepage" : "https://github.com/hofff/contao-htaccess",
+	"license" : "LGPL-3.0+",
+	"authors" : [{
+			"name" : "Oliver Hoff",
+			"email" : "oliver@hofff.com",
+			"homepage" : "https://hofff.com/",
+			"role" : "Developer"
 		}
 	],
-	"support": {
-		"email": "info@bit3.de",
-		"issues": "https://github.com/bit3/contao-htaccess/issues",
-		"wiki": "https://github.com/bit3/contao-htaccess/wiki",
-		"irc": "irc://irc.freenode.org/contao.dev",
-		"source": "https://github.com/bit3/contao-htaccess"
+	"support" : {
+		"email" : "info@hofff.com",
+		"issues" : "https://github.com/hofff/contao-htaccess/issues",
+		"wiki" : "https://github.com/hofff/contao-htaccess/wiki",
+		"irc" : "irc://irc.freenode.org/contao.dev",
+		"source" : "https://github.com/hofff/contao-htaccess"
 	},
-	"require": {
-		"php": ">=5.3",
-		"contao-community-alliance/composer-installer": "*",
-		"contao/core": "~3.1",
-		"contao-community-alliance/dc-general": "~2.0-beta13",
-		"contao-community-alliance/dc-general-data-provider-php-globals-config-file": "~1.0",
-		"contao-community-alliance/event-dispatcher": "~1.0",
-		"bit3/contao-meta-palettes": "~1.6",
-		"bit3/php-string-builder": "~1.0",
-		"menatwork/contao-multicolumnwizard": "~3.2"
+	"require" : {
+		"php" : ">=5.4",
+		"contao-community-alliance/composer-installer" : "*",
+		"contao/core" : "~3.2",
+		"contao-community-alliance/dc-general" : "~2.0-beta13",
+		"contao-community-alliance/dc-general-data-provider-php-globals-config-file" : "~1.0",
+		"contao-community-alliance/event-dispatcher" : "~1.0",
+		"bit3/contao-meta-palettes" : "~1.6",
+		"bit3/php-string-builder" : "~1.0",
+		"menatwork/contao-multicolumnwizard" : "~3.2"
 	},
-	"suggest": {
-		"psi/redirect4ward": "Define page redirection rules."
+	"suggest" : {
+		"psi/redirect4ward" : "Define page redirection rules."
 	},
-	"replace": {
-		"contao-legacy/htaccess": "self.version",
-		"bit3/contao-htaccess": "self.version"
+	"replace" : {
+		"contao-legacy/htaccess" : "self.version",
+		"bit3/contao-htaccess" : "self.version"
 	},
-	"autoload": {
-		"psr-4": {
-			"Bit3\\Contao\\Htaccess\\": "src"
+	"autoload" : {
+		"psr-4" : {
+			"Bit3\\Contao\\Htaccess\\" : "src"
 		}
 	},
-	"extra": {
-		"contao": {
-			"sources": {
-				"assets": "assets/htaccess",
-				"module": "system/modules/htaccess"
+	"extra" : {
+		"contao" : {
+			"sources" : {
+				"assets" : "assets/htaccess",
+				"module" : "system/modules/htaccess"
 			}
 		}
 	}
