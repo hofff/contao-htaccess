@@ -14,6 +14,8 @@
 
 namespace Bit3\Contao\Htaccess;
 
+require_once TL_ROOT . '/system/config/htaccess.php';
+
 use Bit3\Contao\Htaccess\Event\GenerateHtaccessEvent;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
