@@ -41,7 +41,7 @@
 		"contao-community-alliance/dc-general" : "~2.0-beta13",
 		"contao-community-alliance/dc-general-data-provider-php-globals-config-file" : "~1.0",
 		"contao-community-alliance/event-dispatcher" : "~1.0",
-		"bit3/contao-meta-palettes" : "~1.6",
+		"contao-community-alliance/meta-palettes" : "~1.9",
 		"bit3/string-builder" : "~2.0",
 		"menatwork/contao-multicolumnwizard" : "~3.2"
 	},
