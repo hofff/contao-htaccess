@@ -13,6 +13,18 @@
 			"email" : "oliver@hofff.com",
 			"homepage" : "https://hofff.com/",
 			"role" : "Developer"
+		},
+		{
+			"name": "Cliff Parnitzky",
+			"homepage": "https://hofff.com",
+			"email": "cliff@hofff.com",
+			"role": "Developer"
+		},
+		{
+			"name": "Nicky Hoff",
+			"homepage": "https://hofff.com",
+			"email": "nick@hofff.com",
+			"role": "Manager"
 		}
 	],
 	"support" : {
@@ -24,13 +36,13 @@
 	},
 	"require" : {
 		"php" : ">=5.4",
-		"contao-community-alliance/composer-installer" : "*",
+		"contao-community-alliance/composer-plugin": "~2.0",
 		"contao/core" : "~3.2",
 		"contao-community-alliance/dc-general" : "~2.0-beta13",
 		"contao-community-alliance/dc-general-data-provider-php-globals-config-file" : "~1.0",
 		"contao-community-alliance/event-dispatcher" : "~1.0",
 		"bit3/contao-meta-palettes" : "~1.6",
-		"bit3/php-string-builder" : "~1.0",
+		"bit3/string-builder" : "~2.0",
 		"menatwork/contao-multicolumnwizard" : "~3.2"
 	},
 	"suggest" : {
@@ -51,6 +63,11 @@
 				"assets" : "assets/htaccess",
 				"module" : "system/modules/htaccess"
 			}
+		},
+		"branch-alias": {
+			"dev-master": "3.0.x-dev"
 		}
-	}
+	},
+	"prefer-stable": true,
+	"minimum-stability": "dev"
 }
