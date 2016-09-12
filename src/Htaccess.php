@@ -17,6 +17,7 @@ namespace Bit3\Contao\Htaccess;
 require_once TL_ROOT . '/system/config/htaccess.php';
 
 use Bit3\Contao\Htaccess\Event\GenerateHtaccessEvent;
+use Bit3\StringBuilder\StringBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
@@ -49,7 +50,7 @@ class Htaccess
 
 	public function update()
 	{
-		$event = new GenerateHtaccessEvent(new \StringBuilder());
+		$event = new GenerateHtaccessEvent(new StringBuilder());
 
 		/** @var EventDispatcher $eventDispatcher */
 		$eventDispatcher = $GLOBALS['container']['event-dispatcher'];

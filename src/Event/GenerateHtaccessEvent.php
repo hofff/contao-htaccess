@@ -14,6 +14,7 @@
 
 namespace Bit3\Contao\Htaccess\Event;
 
+use Bit3\StringBuilder\StringBuilder;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
@@ -22,26 +23,26 @@ use Symfony\Component\EventDispatcher\Event;
 class GenerateHtaccessEvent extends Event
 {
 	/**
-	 * @var \StringBuilder
+	 * @var StringBuilder
 	 */
 	protected $htaccess;
 
-	function __construct(\StringBuilder $htaccess)
+	function __construct(StringBuilder $htaccess)
 	{
 		$this->htaccess = $htaccess;
 	}
 
 	/**
-	 * @param \StringBuilder $htaccess
+	 * @param StringBuilder $htaccess
 	 */
-	public function setHtaccess(\StringBuilder $htaccess)
+	public function setHtaccess(StringBuilder $htaccess)
 	{
 		$this->htaccess = $htaccess;
 		return $this;
 	}
 
 	/**
-	 * @return \StringBuilder
+	 * @return StringBuilder
 	 */
 	public function getHtaccess()
 	{

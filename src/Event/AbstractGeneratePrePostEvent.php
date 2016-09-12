@@ -14,6 +14,7 @@
 
 namespace Bit3\Contao\Htaccess\Event;
 
+use Bit3\StringBuilder\StringBuilder;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
@@ -22,32 +23,32 @@ use Symfony\Component\EventDispatcher\Event;
 abstract class AbstractGeneratePrePostEvent extends Event
 {
 	/**
-	 * @var \StringBuilder
+	 * @var StringBuilder
 	 */
 	protected $pre;
 
 	/**
-	 * @var \StringBuilder
+	 * @var StringBuilder
 	 */
 	protected $post;
 
-	function __construct(\StringBuilder $pre, \StringBuilder $post)
+	function __construct(StringBuilder $pre, StringBuilder $post)
 	{
 		$this->pre  = $pre;
 		$this->post = $post;
 	}
 
 	/**
-	 * @param \StringBuilder $pre
+	 * @param StringBuilder $pre
 	 */
-	public function setPre(\StringBuilder $pre)
+	public function setPre(StringBuilder $pre)
 	{
 		$this->pre = $pre;
 		return $this;
 	}
 
 	/**
-	 * @return \StringBuilder
+	 * @return StringBuilder
 	 */
 	public function getPre()
 	{
@@ -55,16 +56,16 @@ abstract class AbstractGeneratePrePostEvent extends Event
 	}
 
 	/**
-	 * @param \StringBuilder $post
+	 * @param StringBuilder $post
 	 */
-	public function setPost(\StringBuilder $post)
+	public function setPost(StringBuilder $post)
 	{
 		$this->post = $post;
 		return $this;
 	}
 
 	/**
-	 * @return \StringBuilder
+	 * @return StringBuilder
 	 */
 	public function getPost()
 	{

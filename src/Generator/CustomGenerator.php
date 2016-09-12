@@ -17,6 +17,7 @@ namespace Bit3\Contao\Htaccess\Generator;
 use Bit3\Contao\Htaccess\Event\GenerateCustomEvent;
 use Bit3\Contao\Htaccess\Event\GenerateHtaccessEvent;
 use Bit3\Contao\Htaccess\HtaccessEvents;
+use Bit3\StringBuilder\StringBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -36,7 +37,7 @@ class CustomGenerator implements EventSubscriberInterface
 	{
 		$htaccess = $event->getHtaccess();
 
-		$event = new GenerateCustomEvent(new \StringBuilder(), new \StringBuilder());
+		$event = new GenerateCustomEvent(new StringBuilder(), new StringBuilder());
 
 		/** @var EventDispatcher $eventDispatcher */
 		$eventDispatcher = $GLOBALS['container']['event-dispatcher'];
