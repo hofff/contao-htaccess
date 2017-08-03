@@ -82,17 +82,19 @@ class RewriteGenerator implements EventSubscriberInterface
 		$eventDispatcher = $GLOBALS['container']['event-dispatcher'];
 		$eventDispatcher->dispatch(HtaccessEvents::GENERATE_REWRITES, $event);
 
-		$template             = new \BackendTemplate('htaccess_rewrite');
-		$template->pre        = $event->getPre();
-		$template->post       = $event->getPost();
-		$template->base       = $GLOBALS['TL_CONFIG']['websitePath'] ? $GLOBALS['TL_CONFIG']['websitePath'] : '/';
-		$template->rules      = $GLOBALS['TL_CONFIG']['htaccess_rewrite_rules'];
-		$template->domains    = $domains;
-		$template->wwwRules   = $wwwRules;
-		$template->httpsRules = $httpsRules;
-		$template->gzip       = $GLOBALS['TL_CONFIG']['htaccess_rewrite_gzip'];
-		$template->disabledFiles = $GLOBALS['TL_CONFIG']['htaccess_rewrite_disabled_files'];
-		$template->suffix     = $GLOBALS['TL_CONFIG']['htaccess_rewrite_suffix'];
+		$template                       = new \BackendTemplate('htaccess_rewrite');
+		$template->pre                  = $event->getPre();
+		$template->post                 = $event->getPost();
+		$template->base                 = $GLOBALS['TL_CONFIG']['websitePath'] ? $GLOBALS['TL_CONFIG']['websitePath'] : '/';
+		$template->rules                = $GLOBALS['TL_CONFIG']['htaccess_rewrite_rules'];
+		$template->domains              = $domains;
+		$template->wwwRules             = $wwwRules;
+		$template->httpsRules           = $httpsRules;
+		$template->gzip                 = $GLOBALS['TL_CONFIG']['htaccess_rewrite_gzip'];
+		$template->disabledFiles        = $GLOBALS['TL_CONFIG']['htaccess_rewrite_disabled_files'];
+		$template->suffix               = $GLOBALS['TL_CONFIG']['htaccess_rewrite_suffix'];
+		$template->allowLetsEncryptBots = $GLOBALS['TL_CONFIG']['htaccess_allow_letsencrypt_bots'];
+		$template->redirectIndexPhp     = $GLOBALS['TL_CONFIG']['htaccess_redirect_to_home_when_calling_index_php'];
 
 		$htaccess->append(PHP_EOL);
 		$htaccess->append($template->parse());

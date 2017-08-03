@@ -9,6 +9,15 @@
 ?>
 	RewriteBase <?php echo $this->base; ?>
 
+
+<?php
+	if ($this->allowLetsEncryptBots):
+?>
+	RewriteRule "^.well-known/acme-challenge" - [L]
+<?php
+	endif;
+?>
+
 <?php echo $this->pre; ?>
 
 <?php
@@ -207,6 +216,15 @@
 ?>
 	RewriteRule ^ http://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
+<?php
+	endif;
+?>
+
+<?php
+	if ($this->redirectIndexPhp):
+?>
+	RewriteCond %{THE_REQUEST} ^[A-Z]+\ /index\.php
+	RewriteRule ^index\.php/?(.*) /$1? [L,R=301]
 <?php
 	endif;
 ?>

@@ -322,10 +322,12 @@ $GLOBALS['TL_CONFIG']['htaccess_custom'] = '';
 
 $GLOBALS['TL_CONFIG']['htaccess_auth_enabled'] = '';
 
-$GLOBALS['TL_CONFIG']['htaccess_rewrite_rules']          = '';
-$GLOBALS['TL_CONFIG']['htaccess_rewrite_gzip']           = false;
-$GLOBALS['TL_CONFIG']['htaccess_rewrite_disabled_files'] = 'htm|php|js|css|htc|png|gif|jpe?g|ico|xml|csv|txt|swf|flv|mp4|webm|ogv|mp3|ogg|oga|eot|woff|svg|svgz|ttf|pdf|gz';
-$GLOBALS['TL_CONFIG']['htaccess_rewrite_suffix']         = 'html';
+$GLOBALS['TL_CONFIG']['htaccess_rewrite_rules']                           = '';
+$GLOBALS['TL_CONFIG']['htaccess_rewrite_gzip']                            = false;
+$GLOBALS['TL_CONFIG']['htaccess_rewrite_disabled_files']                  = 'htm|php|js|css|htc|png|gif|jpe?g|ico|xml|csv|txt|swf|flv|mp4|webm|ogv|mp3|ogg|oga|eot|woff|svg|svgz|ttf|pdf|gz';
+$GLOBALS['TL_CONFIG']['htaccess_rewrite_suffix']                          = 'html';
+$GLOBALS['TL_CONFIG']['htaccess_allow_letsencrypt_bots']                  = false;
+$GLOBALS['TL_CONFIG']['htaccess_redirect_to_home_when_calling_index_php'] = false;
 
 $GLOBALS['TL_CONFIG']['htaccess_h5bp_disable_multiview']     = false;
 $GLOBALS['TL_CONFIG']['htaccess_h5bp_disable_indexes']       = false;

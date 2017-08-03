@@ -57,6 +57,8 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 				'htaccess_rewrite_gzip',
 				'htaccess_rewrite_disabled_files',
 				'htaccess_rewrite_suffix',
+				'htaccess_allow_letsencrypt_bots',
+				'htaccess_redirect_to_home_when_calling_index_php',
 			),
 			'htaccess_h5bp'    => array(
 				'htaccess_h5bp_disable_multiview',
@@ -467,6 +469,18 @@ $GLOBALS['TL_DCA']['tl_htaccess'] = array
 			'label'     => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_suffix'],
 			'inputType' => 'text',
 			'eval'      => array('rgxp' => 'alpha', 'tl_class' => 'clr')
+		),
+		'htaccess_allow_letsencrypt_bots'               => array
+		(
+			'label'     => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_allow_letsencrypt_bots'],
+			'inputType' => 'checkbox',
+			'eval'      => array('tl_class' => 'clr')
+		),
+		'htaccess_redirect_to_home_when_calling_index_php'               => array
+		(
+			'label'     => &$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_redirect_to_home_when_calling_index_php'],
+			'inputType' => 'checkbox',
+			'eval'      => array('tl_class' => 'clr')
 		),
 		/* html5boilerplate */
 		'htaccess_h5bp_disable_multiview'     => array
