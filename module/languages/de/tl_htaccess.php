@@ -156,6 +156,14 @@ $GLOBALS['TL_LANG']['tl_htaccess']['htaccess_rewrite_suffix']      = array(
 	'Contao Rewrite Suffix',
 	'Definieren Sie hier den Dateisuffix (z.B. html) für die der Requests auf Contao umgeleitet werden soll. Kann auch leer gelassen werden, um alle dynamischen Requests umzuleiten.'
 );
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_allow_letsencrypt_bots']      = array(
+	'LetsEncrypt Bots erlauben',
+	'Regel zum Erlauben des LetsEncrypt Bots einfügen.'
+);
+$GLOBALS['TL_LANG']['tl_htaccess']['htaccess_redirect_to_home_when_calling_index_php']      = array(
+	'Bei Aufruf von index.php auf Startseite umleiten',
+	'Regel zum Umleiten auf Hauptdomain bei Aufruf von meine-domain.com/index.php einfügen.'
+);
 
 /**
  * html5boilerplate settings
