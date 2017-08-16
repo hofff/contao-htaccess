@@ -2,7 +2,7 @@
 [![Installations via composer per month](http://img.shields.io/packagist/dm/hofff/contao-htaccess.svg?style=flat)](https://packagist.org/packages/hofff/contao-htaccess)
 [![Installations via composer total](http://img.shields.io/packagist/dt/hofff/contao-htaccess.svg?style=flat)](https://packagist.org/packages/hofff/contao-htaccess)
 
-# Contao Extension: hofff.com - Leads encryption
+# Contao Extension: hofff.com - .htaccess Editor
 
 Backend integrated htaccess editor for Contao Open Source CMS.
 
