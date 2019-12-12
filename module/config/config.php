@@ -302,6 +302,11 @@ $GLOBALS['TL_CONFIG']['htaccess_expires']         = array
 		'time'     => (60 * 60 * 24 * 30)
 	),
 	array(
+		'mimetype' => 'application/x-font-woff2',
+		'mode'     => 'A',
+		'time'     => (60 * 60 * 24 * 30)
+	),
+	array(
 		'mimetype' => 'image/svg+xml',
 		'mode'     => 'A',
 		'time'     => (60 * 60 * 24 * 30)
