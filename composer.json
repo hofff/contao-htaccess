@@ -7,22 +7,22 @@
 	],
 	"type" : "contao-module",
 	"homepage" : "https://github.com/hofff/contao-htaccess",
-	"license" : "LGPL-3.0+",
+	"license" : "LGPL-3.0-or-later",
 	"authors" : [{
 			"name" : "Oliver Hoff",
 			"email" : "oliver@hofff.com",
-			"homepage" : "https://hofff.com/",
+			"homepage" : "https://www.hofff.com/",
 			"role" : "Developer"
 		},
 		{
 			"name": "Cliff Parnitzky",
-			"homepage": "https://hofff.com",
+			"homepage": "https://www.hofff.com",
 			"email": "cliff@hofff.com",
 			"role": "Developer"
 		},
 		{
 			"name": "Nicky Hoff",
-			"homepage": "https://hofff.com",
+			"homepage": "https://www.hofff.com",
 			"email": "nick@hofff.com",
 			"role": "Manager"
 		}
@@ -31,7 +31,6 @@
 		"email" : "info@hofff.com",
 		"issues" : "https://github.com/hofff/contao-htaccess/issues",
 		"wiki" : "https://github.com/hofff/contao-htaccess/wiki",
-		"irc" : "irc://irc.freenode.org/contao.dev",
 		"source" : "https://github.com/hofff/contao-htaccess"
 	},
 	"require" : {
