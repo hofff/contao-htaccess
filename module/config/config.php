@@ -131,6 +131,11 @@ $GLOBALS['TL_CONFIG']['htaccess_mime_types']      = array
 		'mimetype'  => 'application/x-font-woff',
 		'encoding'  => '',
 	),
+    array(
+		'extension' => 'woff2',
+		'mimetype'  => 'application/x-font-woff2',
+		'encoding'  => '',
+	),
 	array(
 		'extension' => 'ico',
 		'mimetype'  => 'image/x-icon',
@@ -324,7 +329,7 @@ $GLOBALS['TL_CONFIG']['htaccess_auth_enabled'] = '';
 
 $GLOBALS['TL_CONFIG']['htaccess_rewrite_rules']                           = '';
 $GLOBALS['TL_CONFIG']['htaccess_rewrite_gzip']                            = false;
-$GLOBALS['TL_CONFIG']['htaccess_rewrite_disabled_files']                  = 'htm|php|js|css|htc|png|gif|jpe?g|ico|xml|csv|txt|swf|flv|mp4|webm|ogv|mp3|ogg|oga|eot|woff|svg|svgz|ttf|pdf|gz';
+$GLOBALS['TL_CONFIG']['htaccess_rewrite_disabled_files']                  = 'htm|php|js|css|htc|png|gif|jpe?g|ico|xml|csv|txt|swf|flv|mp4|webm|ogv|mp3|ogg|oga|eot|woff|woff2|svg|svgz|ttf|pdf|gz';
 $GLOBALS['TL_CONFIG']['htaccess_rewrite_suffix']                          = 'html';
 $GLOBALS['TL_CONFIG']['htaccess_allow_letsencrypt_bots']                  = false;
 $GLOBALS['TL_CONFIG']['htaccess_redirect_to_home_when_calling_index_php'] = false;
